@@ -640,31 +640,23 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   );
 });
-
 // ============================================================
 // PRODUCT DETAIL PAGE
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
   if (typeof gsap !== "undefined") {
-    // Breadcrumb animation
-    gsap.fromTo(
-      ".breadcrumb",
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-    );
-
-    // Product Gallery animation
+    // Product Gallery animation (keep horizontal - it's fine)
     gsap.fromTo(
       ".product-gallery",
       { opacity: 0, x: -50 },
       { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", delay: 0.2 },
     );
 
-    // Product Info animation
+    // Product Info animation - FIXED (changed from x to y)
     gsap.fromTo(
       ".product-info-detail",
-      { opacity: 0, x: 50 },
-      { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", delay: 0.3 },
+      { opacity: 0, y: 50 }, // ← FIXED
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.3 }, // ← FIXED
     );
 
     // Specifications section
@@ -713,41 +705,6 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollTrigger: {
           trigger: ".description-section",
           start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      },
-    );
-
-    // Related products
-    gsap.fromTo(
-      ".related-grid .product-card",
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".related-products",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      },
-    );
-
-    // Enquiry section
-    gsap.fromTo(
-      ".enquiry-wrapper",
-      { opacity: 0, scale: 0.95 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.7,
-        ease: "back.out(0.3)",
-        scrollTrigger: {
-          trigger: ".enquiry-section",
-          start: "top 85%",
           toggleActions: "play none none reverse",
         },
       },

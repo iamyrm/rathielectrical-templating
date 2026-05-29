@@ -2024,7 +2024,6 @@ a {
 }
 
 .product-detail-grid>*,
-.breadcrumb,
 .specs-table-wrapper,
 .description-content,
 .related-grid .product-card,
@@ -2214,6 +2213,7 @@ a {
    color: #4a4a4a;
 }
 
+/* ===== DESCRIPTION SECTION - COMPLETE FIX ===== */
 .description-section {
    padding: 60px 0;
    background: #ffffff;
@@ -2222,7 +2222,6 @@ a {
 .description-content {
    max-width: 1000px;
    margin: 0 auto;
-   opacity: 0;
 }
 
 .description-tabs {
@@ -2231,7 +2230,6 @@ a {
    gap: 8px;
    margin-bottom: 32px;
    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-   opacity: 0;
 }
 
 .tab-btn {
@@ -2264,13 +2262,101 @@ a {
    background: var(--primary);
 }
 
-.tab-panel {
+.description-panels .tab-panel {
    display: none;
-   animation: fadeIn 0.3s ease;
-   opacity: 0;
 }
 
-.tab-panel.active {
+.description-panels .tab-panel.active {
+   display: block;
+}
+
+.tab-panel p {
+   font-size: 15px;
+   color: #4a4a4a;
+   line-height: 1.7;
+   margin-bottom: 16px;
+}
+
+.feature-list,
+.application-list {
+   list-style: none;
+   padding: 0;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 12px;
+}
+
+.feature-list li,
+.application-list li {
+   padding: 8px 0 8px 24px;
+   font-size: 14px;
+   color: #4a4a4a;
+   position: relative;
+}
+
+.feature-list li::before,
+.application-list li::before {
+   content: '✓';
+   position: absolute;
+   left: 0;
+   color: var(--primary);
+   font-weight: bold;
+}
+
+/* ===== DESCRIPTION SECTION - COMPLETE FIX ===== */
+.description-section {
+   padding: 60px 0;
+   background: #ffffff;
+}
+
+.description-content {
+   max-width: 1000px;
+   margin: 0 auto;
+}
+
+.description-tabs {
+   display: flex;
+   justify-content: center;
+   gap: 8px;
+   margin-bottom: 32px;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn {
+   padding: 12px 28px;
+   font-size: 15px;
+   font-weight: 600;
+   color: #6b6b6b;
+   background: none;
+   border: none;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   position: relative;
+}
+
+.tab-btn:hover {
+   color: var(--primary);
+}
+
+.tab-btn.active {
+   color: var(--primary);
+}
+
+.tab-btn.active::after {
+   content: '';
+   position: absolute;
+   bottom: -1px;
+   left: 0;
+   right: 0;
+   height: 2px;
+   background: var(--primary);
+}
+
+.description-panels .tab-panel {
+   display: none;
+}
+
+.description-panels .tab-panel.active {
    display: block;
 }
 
