@@ -3339,6 +3339,11 @@ a {
 }
 
 @media (max-width: 768px) {
+
+   .contact-info {
+      order: 1;
+   }
+
    .page-title-section {
       padding: 60px 0;
    }
