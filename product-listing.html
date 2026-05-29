@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>APAR — Navigation & Premium Footer</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+   <!-- GSAP CDN -->
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+   <link rel="stylesheet" href="./assets/css/style.css">
+   <link rel="stylesheet" href="./assets/css/gsap.css">
+</head>
+
+<body>
+
+   <!-- ══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
+   <header>
+      <nav class="nav" id="mainNav">
+         <div class="nav__inner">
+            <a href="./index.html" class="nav__logo">
+               <div class="logo__mark">
+                  <img src="./assets/images/logo.png" alt="APAR Industries Logo">
+               </div>
+            </a>
+            <ul class="nav__menu" id="navMenu">
+               <li class="nav__item"><a href="./page-about.html" class="nav__link">About Us</a></li>
+               <li class="nav__item" id="item-businesses">
+                  <button class="nav__link" aria-expanded="false">
+                     Businesses <span class="chevron"><svg viewBox="0 0 24 24">
+                           <polyline points="6 9 12 15 18 9" />
+                        </svg></span>
+                  </button>
+                  <div class="dropdown dropdown--wide">
+                     <span class="dropdown__header">Our Business Units</span>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">🔌</div>
+                        <div class="item__text"><span class="item__title">Cables &amp; Wires</span><span
+                              class="item__desc">Power, specialty &amp; flexible cables</span></div>
+                     </a>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">🛢️</div>
+                        <div class="item__text"><span class="item__title">Lubricants &amp; Oils</span><span
+                              class="item__desc">Industrial &amp; automotive lubricants</span></div>
+                     </a>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">🚗</div>
+                        <div class="item__text"><span class="item__title">Automotive</span><span class="item__desc">OEM
+                              &amp;
+                              aftermarket solutions</span></div>
+                     </a>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">⚡</div>
+                        <div class="item__text"><span class="item__title">Transformer Oils</span><span
+                              class="item__desc">Electrical insulation &amp; cooling</span></div>
+                     </a>
+                  </div>
+               </li>
+               <li class="nav__item" id="item-investors">
+                  <button class="nav__link" aria-expanded="false">Investors <span class="chevron"><svg
+                           viewBox="0 0 24 24">
+                           <polyline points="6 9 12 15 18 9" />
+                        </svg></span></button>
+                  <div class="dropdown"><a href="#" class="dropdown__item">Annual Reports</a><a href="#"
+                        class="dropdown__item">Financial Results</a><a href="#" class="dropdown__item">Stock
+                        Information</a><a href="#" class="dropdown__item">Board of Directors</a>
+                     <div class="dropdown__divider"></div><a href="#" class="dropdown__item">Investor
+                        Presentations</a>
+                  </div>
+               </li>
+               <li class="nav__item"><a href="./product-listing.html" class="nav__link">Products</a></li>
+               <li class="nav__item" id="item-resources">
+                  <button class="nav__link" aria-expanded="false">Resources <span class="chevron"><svg
+                           viewBox="0 0 24 24">
+                           <polyline points="6 9 12 15 18 9" />
+                        </svg></span></button>
+                  <div class="dropdown"><a href="#" class="dropdown__item">Brochures &amp; Catalogues</a><a href="#"
+                        class="dropdown__item">Technical Datasheets</a><a href="#" class="dropdown__item">Media &amp;
+                        Press</a><a href="#" class="dropdown__item">Blog &amp; Insights</a></div>
+               </li>
+               <li class="nav__item"><a href="./page-contact.html" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+               <div class="search-wrap" id="searchWrap">
+                  <div class="search-panel" id="searchPanel"><input type="text" id="searchInput"
+                        placeholder="Search products, news…" autocomplete="off"><button class="search-close"
+                        id="searchClose"><svg viewBox="0 0 24 24">
+                           <line x1="18" y1="6" x2="6" y2="18" />
+                           <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg></button></div>
+                  <button class="search-btn" id="searchBtn"><svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                     </svg></button>
+               </div>
+               <a href="#" class="nav__link nav__link--cta">Get Dealership</a>
+               <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+         </div>
+      </nav>
+
+      <div class="drawer" id="drawer">
+         <div class="drawer__panel">
+            <div class="mob-item"><a href="./page-about.html" class="mob-link">About Us</a></div>
+            <div class="mob-item" id="mob-businesses"><button class="mob-link" id="mob-btn-businesses">Businesses<span
+                     class="mob-chevron"><svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></span></button>
+               <div class="mob-submenu"><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">🔌</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Cables &amp; Wires</span><span
+                           class="mob-sub-desc">Power, specialty &amp; flexible cables</span></div>
+                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">🛢️</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Lubricants &amp; Oils</span><span
+                           class="mob-sub-desc">Industrial &amp; automotive lubricants</span></div>
+                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">🚗</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Automotive</span><span
+                           class="mob-sub-desc">OEM
+                           &amp;
+                           aftermarket solutions</span></div>
+                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">⚡</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Transformer Oils</span><span
+                           class="mob-sub-desc">Electrical insulation &amp; cooling</span></div>
+                  </a></div>
+            </div>
+            <div class="mob-item" id="mob-investors"><button class="mob-link" id="mob-btn-investors">Investors<span
+                     class="mob-chevron"><svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></span></button>
+               <div class="mob-submenu"><a href="#" class="mob-sub-link">Annual Reports</a><a href="#"
+                     class="mob-sub-link">Financial Results</a><a href="#" class="mob-sub-link">Stock
+                     Information</a><a href="#" class="mob-sub-link">Board of Directors</a><a href="#"
+                     class="mob-sub-link">Investor
+                     Presentations</a></div>
+            </div>
+            <div class="mob-item"><a href="./product-listing.html" class="mob-link">Products</a></div>
+            <div class="mob-item" id="mob-resources"><button class="mob-link" id="mob-btn-resources">Resources<span
+                     class="mob-chevron"><svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></span></button>
+               <div class="mob-submenu"><a href="#" class="mob-sub-link">Brochures &amp; Catalogues</a><a href="#"
+                     class="mob-sub-link">Technical Datasheets</a><a href="#" class="mob-sub-link">Media &amp;
+                     Press</a><a href="#" class="mob-sub-link">Blog &amp; Insights</a></div>
+            </div>
+            <div class="mob-item"><a href="./page-contact.html" class="mob-link">Contact</a></div>
+            <div class="mob-actions"><a href="#" class="mob-cta">Get Dealership</a></div>
+         </div>
+      </div>
+   </header>
+
+   <!-- Product Listing Main Content -->
+   <!-- Product Listing Main Content -->
+   <main class="product-listing-page">
+
+      <!-- Page Title Section -->
+      <section class="page-title-section"
+         style="background: linear-gradient(95deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 30%, rgba(50, 54, 140, 0.3) 60%, rgba(0, 0, 0, 0.2) 100%), url('https://rathielectricals.com/upload/content/banner/bannerimage-2023-04-05-10-21-47-CA7.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+         <div class="container">
+            <h1 class="page-title">Our Products</h1>
+            <p class="page-subtitle">Premium quality cables, lubricants, and industrial solutions engineered for
+               excellence</p>
+         </div>
+      </section>
+
+      <!-- Categories Filter Section -->
+      <section class="categories-filter-section">
+         <div class="container">
+            <div class="filter-wrapper">
+               <button class="filter-btn active" data-filter="all">All Products</button>
+               <button class="filter-btn" data-filter="cables">Cables & Wires</button>
+               <button class="filter-btn" data-filter="lubricants">Lubricants & Oils</button>
+               <button class="filter-btn" data-filter="automotive">Automotive</button>
+               <button class="filter-btn" data-filter="transformer">Transformer Oils</button>
+               <button class="filter-btn" data-filter="specialty">Specialty Wires</button>
+            </div>
+         </div>
+      </section>
+
+      <!-- Products Grid Section -->
+      <section class="listing-products-section">
+         <div class="container">
+            <div class="products-listing-grid">
+
+               <!-- Product Card 1 -->
+               <div class="product-card" data-category="cables">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Power Cables">
+                  </div>
+                  <div class="product-card__badge">Bestseller</div>
+                  <h3 class="product-card__title">Power & Control Cables</h3>
+                  <p class="product-card__desc">XLPE insulated, armoured/unarmoured cables for industrial & utility
+                     applications</p>
+                  <div class="product-card__meta"><span class="product-card__category">Cables</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 Pan India Supply</span><a
+                        href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 2 -->
+               <div class="product-card" data-category="transformer">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Transformer Oils">
+                  </div>
+                  <div class="product-card__badge premium">Premium</div>
+                  <h3 class="product-card__title">Transformer Oils</h3>
+                  <p class="product-card__desc">High-grade electrical insulating oils for power transformers &
+                     switchgears</p>
+                  <div class="product-card__meta"><span class="product-card__category">Lubricants</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 Global Export</span><a
+                        href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 3 -->
+               <div class="product-card" data-category="lubricants">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Industrial Lubricants">
+                  </div>
+                  <div class="product-card__badge new">New</div>
+                  <h3 class="product-card__title">Industrial Lubricants</h3>
+                  <p class="product-card__desc">Hydraulic oils, gear oils, greases for heavy machinery & automotive</p>
+                  <div class="product-card__meta"><span class="product-card__category">Automotive</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 5 Manufacturing
+                        Hubs</span><a href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 4 -->
+               <div class="product-card" data-category="specialty">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Specialty Wires">
+                  </div>
+                  <div class="product-card__badge trusted">Trusted</div>
+                  <h3 class="product-card__title">Specialty Wires</h3>
+                  <p class="product-card__desc">Submersible, welding, solar, and winding wires for diverse applications
+                  </p>
+                  <div class="product-card__meta"><span class="product-card__category">Cables</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 140+ Countries</span><a
+                        href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 5 -->
+               <div class="product-card" data-category="lubricants">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Bio Oils">
+                  </div>
+                  <div class="product-card__badge eco">Eco+</div>
+                  <h3 class="product-card__title">Bio-Degradable Oils</h3>
+                  <p class="product-card__desc">Environment-friendly transformer oils with superior biodegradability</p>
+                  <div class="product-card__meta"><span class="product-card__category">Green Energy</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 Eco-Certified</span><a
+                        href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 6 -->
+               <div class="product-card" data-category="automotive">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Auto Lubricants">
+                  </div>
+                  <div class="product-card__badge heavy">Heavy Duty</div>
+                  <h3 class="product-card__title">Automotive Lubricants</h3>
+                  <p class="product-card__desc">Engine oils, transmission fluids for passenger & commercial vehicles</p>
+                  <div class="product-card__meta"><span class="product-card__category">Automotive</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 OEM Approved</span><a
+                        href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 7 -->
+               <div class="product-card" data-category="cables">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Solar Cables">
+                  </div>
+                  <div class="product-card__badge solar">Solar</div>
+                  <h3 class="product-card__title">Solar Cables</h3>
+                  <p class="product-card__desc">UV resistant, halogen-free cables for photovoltaic systems</p>
+                  <div class="product-card__meta"><span class="product-card__category">Renewable</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 Solar Certified</span><a
+                        href="./product-detail.html" class="product-card__link">View Details →</a></div>
+               </div>
+
+               <!-- Product Card 8 -->
+               <div class="product-card" data-category="lubricants">
+                  <div class="product-card__image">
+                     <img
+                        src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                        alt="Industrial Greases">
+                  </div>
+                  <div class="product-card__badge industrial">Industrial</div>
+                  <h3 class="product-card__title">Industrial Greases</h3>
+                  <p class="product-card__desc">High-temperature, extreme-pressure greases for bearings & machinery</p>
+                  <div class="product-card__meta"><span class="product-card__category">Lubricants</span></div>
+                  <div class="product-card__footer"><span class="product-card__location">📍 Heavy Duty</span><a href="#"
+                        class="product-card__link">View Details →</a></div>
+               </div>
+
+            </div>
+
+            <!-- Pagination Layout -->
+            <div class="listing-pagination">
+               <div class="pagination-controls">
+                  <a href="#" class="pagination-prev disabled">←</a>
+                  <a href="#" class="pagination-num active">1</a>
+                  <a href="#" class="pagination-num">2</a>
+                  <a href="#" class="pagination-num">3</a>
+                  <a href="#" class="pagination-num">4</a>
+                  <span class="pagination-dots">...</span>
+                  <a href="#" class="pagination-num">8</a>
+                  <a href="#" class="pagination-next">→</a>
+               </div>
+               <p class="pagination-info">Showing 1-8 of 64 products</p>
+            </div>
+
+         </div>
+      </section>
+
+   </main>
+
+   <!-- ══════════════════════════════════ PREMIUM FOOTER ══════════════════════════════════ -->
+   <footer class="footer">
+      <div class="footer__inner">
+         <div class="footer__grid">
+            <div class="footer__brand-col">
+               <a href="./index.html" style="text-decoration: none; display: inline-block;">
+                  <div class="logo__mark footer-logo"><img src="./assets/images/logo-footer.png"
+                        alt="APAR Industries Logo">
+                  </div>
+               </a>
+               <p class="footer__brand-desc">APAR Industries is a dynamic global leader in engineered wires, premium
+                  industrial &amp; automotive lubricants, and advanced transformer oil solutions powering
+                  infrastructures across 140+ countries.</p>
+            </div>
+            <div class="footer__col">
+               <h4 class="footer__col-title">Head Office</h4>
+               <div class="footer__address-block">
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                           <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg></span><span class="location-item__text"><strong>APAR House (Corporate)</strong>
+                        Corporate
+                        Park, Sion-Trombay Road, Chembur, Mumbai - 400071, Maharashtra, India.</span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="tel:+912267808000">+91 22 6780 8000</a></span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="mailto:corporate@apar.com">corporate@apar.com</a></span></div>
+               </div>
+            </div>
+            <div class="footer__col">
+               <h4 class="footer__col-title">Branch Office</h4>
+               <div class="footer__address-block">
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg></span><span class="location-item__text"><strong>New Delhi Office</strong> 301,
+                        Arunachal
+                        Building, 19 Barakhamba Road, New Delhi - 110001, India.</span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="tel:+911123313233">+91 11 2331 3233</a></span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="mailto:delhi@apar.com">delhi@apar.com</a></span></div>
+               </div>
+            </div>
+            <div class="footer__col">
+               <h4 class="footer__col-title">Manufacturing Plants</h4>
+               <div class="footer__address-block">
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg></span><span class="location-item__text"><strong>Rabale Oil Plant</strong> Plot No.
+                        T-2,
+                        TTC Industrial Area, Thane-Belapur Road, Navi Mumbai - 400701, India.</span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg></span><span class="location-item__text"><strong>Athola Cable Plant</strong> Survey No.
+                        182 &amp; 183, Village Athola, Dadra &amp; Nagar Haveli - 396230, India.</span></div>
+               </div>
+            </div>
+         </div>
+
+         <!-- FAQ Accordion Section -->
+         <div class="footer-faq">
+            <div class="footer-faq__accordion">
+               <div class="faq-item"><button class="faq-question"><span>What types of cables does APAR Industries
+                        manufacture?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>APAR Industries manufactures a comprehensive range of cables including power cables,
+                           control
+                           cables, instrument cables, specialty cables, solar cables, submersible cables, welding
+                           cables, and winding wires. Our products cater to diverse industries including power
+                           generation, transmission, distribution, oil & gas, renewable energy, and infrastructure
+                           projects.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="faq-item"><button class="faq-question"><span>What is the warranty period for APAR
+                        products?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>APAR offers industry-leading warranty periods across our product range. Cables come with a
+                           standard warranty of 12-18 months from the date of dispatch, while our transformer oils
+                           and
+                           industrial lubricants come with a 24-month warranty when stored under recommended
+                           conditions.
+                           Extended warranty options are available for bulk and long-term projects. Please contact
+                           our
+                           customer service for specific warranty details.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="faq-item"><button class="faq-question"><span>Does APAR provide customized solutions for
+                        specific industry requirements?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>Yes, APAR has a dedicated R&D team that works closely with clients to develop customized
+                           solutions. Whether you need cables with specific insulation properties, transformer oils
+                           with
+                           particular viscosity grades, or industrial lubricants formulated for extreme operating
+                           conditions, our engineering team can tailor products to meet your exact specifications.
+                           Contact our technical support team to discuss your requirements.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="faq-item"><button class="faq-question"><span>How can I become an authorized dealer or
+                        distributor for APAR products?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>APAR welcomes partnership inquiries from qualified distributors and dealers. To become an
+                           authorized partner, please fill out the "Get Dealership" form on our website or contact
+                           our
+                           business development team at dealership@apar.com. Our team will evaluate your application
+                           based on market presence, infrastructure, and commitment to quality standards. We provide
+                           comprehensive training and marketing support to all our authorized partners.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="footer__bottom">
+            <span class="footer__copyright">&copy; 2026 APAR Industries Ltd. All Rights Reserved. Crafted with
+               premium
+               engineering.</span>
+            <div class="footer__socials">
+               <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+                     <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg></a>
+               <a href="#" class="social-link" aria-label="X"><svg viewBox="0 0 24 24">
+                     <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg></a>
+               <a href="#" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24">
+                     <path
+                        d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg></a>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+   <script src="./assets/js/script.js"></script>
+   <script src="./assets/js/gsap.js"></script>
+</body>
+
+</html>

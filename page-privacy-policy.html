@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>APAR — Navigation & Premium Footer</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+   <!-- GSAP CDN -->
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+   <link rel="stylesheet" href="./assets/css/style.css">
+   <link rel="stylesheet" href="./assets/css/gsap.css">
+   <style>
+     
+   </style>
+</head>
+
+<body>
+
+   <!-- ══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
+   <header>
+      <nav class="nav" id="mainNav">
+         <div class="nav__inner">
+            <a href="./index.html" class="nav__logo">
+               <div class="logo__mark">
+                  <img src="./assets/images/logo.png" alt="APAR Industries Logo">
+               </div>
+            </a>
+            <ul class="nav__menu" id="navMenu">
+               <li class="nav__item"><a href="./page-about.html" class="nav__link">About Us</a></li>
+               <li class="nav__item" id="item-businesses">
+                  <button class="nav__link" aria-expanded="false">
+                     Businesses <span class="chevron"><svg viewBox="0 0 24 24">
+                           <polyline points="6 9 12 15 18 9" />
+                        </svg></span>
+                  </button>
+                  <div class="dropdown dropdown--wide">
+                     <span class="dropdown__header">Our Business Units</span>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">🔌</div>
+                        <div class="item__text"><span class="item__title">Cables &amp; Wires</span><span
+                              class="item__desc">Power, specialty &amp; flexible cables</span></div>
+                     </a>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">🛢️</div>
+                        <div class="item__text"><span class="item__title">Lubricants &amp; Oils</span><span
+                              class="item__desc">Industrial &amp; automotive lubricants</span></div>
+                     </a>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">🚗</div>
+                        <div class="item__text"><span class="item__title">Automotive</span><span class="item__desc">OEM
+                              &amp;
+                              aftermarket solutions</span></div>
+                     </a>
+                     <a href="#" class="dropdown__item">
+                        <div class="item__icon">⚡</div>
+                        <div class="item__text"><span class="item__title">Transformer Oils</span><span
+                              class="item__desc">Electrical insulation &amp; cooling</span></div>
+                     </a>
+                  </div>
+               </li>
+               <li class="nav__item" id="item-investors">
+                  <button class="nav__link" aria-expanded="false">Investors <span class="chevron"><svg
+                           viewBox="0 0 24 24">
+                           <polyline points="6 9 12 15 18 9" />
+                        </svg></span></button>
+                  <div class="dropdown"><a href="#" class="dropdown__item">Annual Reports</a><a href="#"
+                        class="dropdown__item">Financial Results</a><a href="#" class="dropdown__item">Stock
+                        Information</a><a href="#" class="dropdown__item">Board of Directors</a>
+                     <div class="dropdown__divider"></div><a href="#" class="dropdown__item">Investor
+                        Presentations</a>
+                  </div>
+               </li>
+               <li class="nav__item"><a href="./product-listing.html" class="nav__link">Products</a></li>
+               <li class="nav__item" id="item-resources">
+                  <button class="nav__link" aria-expanded="false">Resources <span class="chevron"><svg
+                           viewBox="0 0 24 24">
+                           <polyline points="6 9 12 15 18 9" />
+                        </svg></span></button>
+                  <div class="dropdown"><a href="#" class="dropdown__item">Brochures &amp; Catalogues</a><a href="#"
+                        class="dropdown__item">Technical Datasheets</a><a href="#" class="dropdown__item">Media &amp;
+                        Press</a><a href="#" class="dropdown__item">Blog &amp; Insights</a></div>
+               </li>
+               <li class="nav__item"><a href="./page-contact.html" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+               <div class="search-wrap" id="searchWrap">
+                  <div class="search-panel" id="searchPanel"><input type="text" id="searchInput"
+                        placeholder="Search products, news…" autocomplete="off"><button class="search-close"
+                        id="searchClose"><svg viewBox="0 0 24 24">
+                           <line x1="18" y1="6" x2="6" y2="18" />
+                           <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg></button></div>
+                  <button class="search-btn" id="searchBtn"><svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                     </svg></button>
+               </div>
+               <a href="#" class="nav__link nav__link--cta">Get Dealership</a>
+               <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+         </div>
+      </nav>
+
+      <div class="drawer" id="drawer">
+         <div class="drawer__panel">
+            <div class="mob-item"><a href="./page-about.html" class="mob-link">About Us</a></div>
+            <div class="mob-item" id="mob-businesses"><button class="mob-link" id="mob-btn-businesses">Businesses<span
+                     class="mob-chevron"><svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></span></button>
+               <div class="mob-submenu"><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">🔌</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Cables &amp; Wires</span><span
+                           class="mob-sub-desc">Power, specialty &amp; flexible cables</span></div>
+                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">🛢️</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Lubricants &amp; Oils</span><span
+                           class="mob-sub-desc">Industrial &amp; automotive lubricants</span></div>
+                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">🚗</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Automotive</span><span
+                           class="mob-sub-desc">OEM
+                           &amp;
+                           aftermarket solutions</span></div>
+                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-icon">⚡</div>
+                     <div class="mob-sub-text"><span class="mob-sub-title">Transformer Oils</span><span
+                           class="mob-sub-desc">Electrical insulation &amp; cooling</span></div>
+                  </a></div>
+            </div>
+            <div class="mob-item" id="mob-investors"><button class="mob-link" id="mob-btn-investors">Investors<span
+                     class="mob-chevron"><svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></span></button>
+               <div class="mob-submenu"><a href="#" class="mob-sub-link">Annual Reports</a><a href="#"
+                     class="mob-sub-link">Financial Results</a><a href="#" class="mob-sub-link">Stock
+                     Information</a><a href="#" class="mob-sub-link">Board of Directors</a><a href="#"
+                     class="mob-sub-link">Investor
+                     Presentations</a></div>
+            </div>
+            <div class="mob-item"><a href="./product-listing.html" class="mob-link">Products</a></div>
+            <div class="mob-item" id="mob-resources"><button class="mob-link" id="mob-btn-resources">Resources<span
+                     class="mob-chevron"><svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></span></button>
+               <div class="mob-submenu"><a href="#" class="mob-sub-link">Brochures &amp; Catalogues</a><a href="#"
+                     class="mob-sub-link">Technical Datasheets</a><a href="#" class="mob-sub-link">Media &amp;
+                     Press</a><a href="#" class="mob-sub-link">Blog &amp; Insights</a></div>
+            </div>
+            <div class="mob-item"><a href="./page-contact.html" class="mob-link">Contact</a></div>
+            <div class="mob-actions"><a href="#" class="mob-cta">Get Dealership</a></div>
+         </div>
+      </div>
+   </header>
+   <!-- Privacy Policy Page Main Content -->
+   <main class="privacy-page">
+
+
+      <section class="page-title-section"
+         style="background: linear-gradient(95deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 30%, rgba(50, 54, 140, 0.3) 60%, rgba(0, 0, 0, 0.2) 100%), url('https://images.unsplash.com/photo-1635335874521-7987db781153?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+         <div class="container">
+            <h1 class="page-title">Privacy and Police</h1>
+            <p class="page-subtitle">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, officia?</p>
+         </div>
+      </section>
+
+      <!-- Content Section -->
+      <section class="privacy-page-content">
+         <div class="privacy-page-container">
+
+            <p class="privacy-page-intro">In order for the website to provide a safe and useful service, it is important
+               for Bigyaapan.com to collect, use and share personal information.</p>
+
+            <!-- Collection Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Collection</h2>
+               <p class="privacy-page-text">When you register to use our Services, we may collect the following
+                  information about you:</p>
+
+               <ul class="privacy-page-list">
+                  <li>If you register using your Google account: first name, last name and email address;</li>
+                  <li>If you register using your Facebook account: we collect first name and last name as appeared on
+                     your Facebook account, Facebook IDs and the URL to your Facebook profile picture. In the event you
+                     have provided permission to Facebook through their in-app privacy option (which appears just before
+                     you register on our Platform), we may collect your gender, age or email id depending on the
+                     permissions granted by you.</li>
+                  <li>If you register using your mobile number, we collect your mobile number.</li>
+                  <li>If you register using your Apple ID: your first and last name and email address; you can decide
+                     whether to share your email address with us when you sign in your Apple account.</li>
+               </ul>
+
+               <p class="privacy-page-text">Depending on the choices you make during the log-in to our Services or
+                  during the process of engaging our Services, you may opt to give the following additional personal
+                  data:</p>
+
+               <ul class="privacy-page-list">
+                  <li>Your name;</li>
+                  <li>E-mail address;</li>
+                  <li>Mobile number;</li>
+                  <li>Your E-Sewa I'd, Imepay I'd or bank details in case you choose to purchase our paid services</li>
+               </ul>
+
+               <p class="privacy-page-text">Information posted on Bigyaapan.com is publicly available. If you choose to
+                  provide us with personal information, you are consenting to the transfer and storage of that
+                  information on our servers. We collect and store the following personal information:</p>
+
+               <ul class="privacy-page-list">
+                  <li>Email address, contact information, and (depending on the service used) sometimes financial
+                     information</li>
+                  <li>Computer sign-on data, statistics on page views, traffic to and from Bigyaapan.com and response to
+                     advertisements</li>
+                  <li>Other information, including users' IP address and standard web log information.</li>
+               </ul>
+            </div>
+
+            <!-- Use Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Use</h2>
+               <p class="privacy-page-text">We use users' personal information to:</p>
+
+               <ul class="privacy-page-list">
+                  <li>Provide our services</li>
+                  <li>Resolve disputes, collect fees, and troubleshoot problems</li>
+                  <li>Encourage safe trading and enforce our policies</li>
+                  <li>Customize users experience, measure interest in our services</li>
+                  <li>Improve our services and inform users about services and updates</li>
+                  <li>Communicate marketing and promotional offers to you according to your preferences</li>
+                  <li>Do other things for users as described when we collect the information</li>
+               </ul>
+            </div>
+
+            <!-- Disclosure Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Disclosure</h2>
+               <p class="privacy-page-text">We don't sell or rent users' personal information to third parties for their
+                  marketing purposes without users' explicit consent. We may disclose personal information to respond to
+                  legal requirements, enforce our policies, respond to claims that a posting or other content violates
+                  other's rights, or protect anyone's rights, property, or safety.</p>
+            </div>
+
+            <!-- Communication Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Communication and email tools</h2>
+               <p class="privacy-page-text">You agree to receive marketing communications about consumer goods and
+                  services on behalf of our third party advertising partners unless you tell us that you prefer not to
+                  receive such communications. If you don't wish to receive marketing communications from us, simply
+                  indicate your preference by following directions provided with the communication.</p>
+               <p class="privacy-page-text">You may not use our site or communication tools to harvest addresses, send
+                  spam or otherwise breach our Terms of Use or Privacy Policy. We may automatically scan and manually
+                  filter email messages sent via our communication tools for malicious activity or prohibited content.
+                  If you use our tools to send content to a friend, we don't permanently store your friends' addresses
+                  or use or disclose them for marketing purposes. To report spam from other users, please contact us.
+               </p>
+            </div>
+
+            <!-- Security Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Security</h2>
+               <p class="privacy-page-text">We use lots of tools (encryption, passwords, physical security) to protect
+                  your personal information against unauthorized access and disclosure.</p>
+               <p class="privacy-page-text">All personal electronic details will be kept private by the Service except
+                  for those that you wish to disclose.</p>
+               <p class="privacy-page-text">It is unacceptable to disclose the contact information of others through the
+                  Service.</p>
+               <p class="privacy-page-text">If you violate the laws of your country of residence and/or the terms of use
+                  of the Service you forfeit your privacy rights over your personal information.</p>
+            </div>
+
+            <!-- Contact Details Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Contact details</h2>
+               <p class="privacy-page-text">Customer support e-mail: <a href="mailto:admin@bigyaapan.com"
+                     class="privacy-page-link">admin@bigyaapan.com</a></p>
+            </div>
+
+            <!-- Unsubscribe Section -->
+            <div class="privacy-page-block">
+               <h2 class="privacy-page-block-title">Unsubscribe information</h2>
+               <p class="privacy-page-text">If at any time you wish to have your information reviewed or removed from
+                  our active databases, please contact us at <a href="mailto:admin@Bigyaapan.com"
+                     class="privacy-page-link">admin@Bigyaapan.com</a>.</p>
+               <p class="privacy-page-text">Bigyaapan.com makes use of Display Advertising, and uses Remarketing
+                  technology with Google Analytics to advertise online. Third-party vendors, including Google, may show
+                  our ads on various websites across the Internet, using first-party cookies and third-party cookies
+                  together to inform, optimize, and serve ads based on past visits to our website.</p>
+            </div>
+
+         </div>
+      </section>
+
+   </main>
+   <!-- ══════════════════════════════════ PREMIUM FOOTER ══════════════════════════════════ -->
+   <footer class="footer">
+      <div class="footer__inner">
+         <div class="footer__grid">
+            <div class="footer__brand-col">
+               <a href="./index.html" style="text-decoration: none; display: inline-block;">
+                  <div class="logo__mark footer-logo"><img src="./assets/images/logo-footer.png"
+                        alt="APAR Industries Logo">
+                  </div>
+               </a>
+               <p class="footer__brand-desc">APAR Industries is a dynamic global leader in engineered wires, premium
+                  industrial &amp; automotive lubricants, and advanced transformer oil solutions powering
+                  infrastructures across 140+ countries.</p>
+            </div>
+            <div class="footer__col">
+               <h4 class="footer__col-title">Head Office</h4>
+               <div class="footer__address-block">
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                           <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg></span><span class="location-item__text"><strong>APAR House (Corporate)</strong>
+                        Corporate
+                        Park, Sion-Trombay Road, Chembur, Mumbai - 400071, Maharashtra, India.</span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="tel:+912267808000">+91 22 6780 8000</a></span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="mailto:corporate@apar.com">corporate@apar.com</a></span></div>
+               </div>
+            </div>
+            <div class="footer__col">
+               <h4 class="footer__col-title">Branch Office</h4>
+               <div class="footer__address-block">
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg></span><span class="location-item__text"><strong>New Delhi Office</strong> 301,
+                        Arunachal
+                        Building, 19 Barakhamba Road, New Delhi - 110001, India.</span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="tel:+911123313233">+91 11 2331 3233</a></span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg></span><span class="location-item__text"><a class="location-item__link"
+                           href="mailto:delhi@apar.com">delhi@apar.com</a></span></div>
+               </div>
+            </div>
+            <div class="footer__col">
+               <h4 class="footer__col-title">Manufacturing Plants</h4>
+               <div class="footer__address-block">
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg></span><span class="location-item__text"><strong>Rabale Oil Plant</strong> Plot No.
+                        T-2,
+                        TTC Industrial Area, Thane-Belapur Road, Navi Mumbai - 400701, India.</span></div>
+                  <div class="location-item"><span class="location-item__icon"><svg fill="none" stroke="currentColor"
+                           stroke-width="2" viewBox="0 0 24 24">
+                           <path
+                              d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg></span><span class="location-item__text"><strong>Athola Cable Plant</strong> Survey No.
+                        182 &amp; 183, Village Athola, Dadra &amp; Nagar Haveli - 396230, India.</span></div>
+               </div>
+            </div>
+         </div>
+
+         <!-- FAQ Accordion Section -->
+         <div class="footer-faq">
+            <div class="footer-faq__accordion">
+               <div class="faq-item"><button class="faq-question"><span>What types of cables does APAR Industries
+                        manufacture?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>APAR Industries manufactures a comprehensive range of cables including power cables,
+                           control
+                           cables, instrument cables, specialty cables, solar cables, submersible cables, welding
+                           cables, and winding wires. Our products cater to diverse industries including power
+                           generation, transmission, distribution, oil & gas, renewable energy, and infrastructure
+                           projects.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="faq-item"><button class="faq-question"><span>What is the warranty period for APAR
+                        products?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>APAR offers industry-leading warranty periods across our product range. Cables come with a
+                           standard warranty of 12-18 months from the date of dispatch, while our transformer oils
+                           and
+                           industrial lubricants come with a 24-month warranty when stored under recommended
+                           conditions.
+                           Extended warranty options are available for bulk and long-term projects. Please contact
+                           our
+                           customer service for specific warranty details.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="faq-item"><button class="faq-question"><span>Does APAR provide customized solutions for
+                        specific industry requirements?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>Yes, APAR has a dedicated R&D team that works closely with clients to develop customized
+                           solutions. Whether you need cables with specific insulation properties, transformer oils
+                           with
+                           particular viscosity grades, or industrial lubricants formulated for extreme operating
+                           conditions, our engineering team can tailor products to meet your exact specifications.
+                           Contact our technical support team to discuss your requirements.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="faq-item"><button class="faq-question"><span>How can I become an authorized dealer or
+                        distributor for APAR products?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9" />
+                     </svg></button>
+                  <div class="faq-answer-wrapper">
+                     <div class="faq-answer">
+                        <p>APAR welcomes partnership inquiries from qualified distributors and dealers. To become an
+                           authorized partner, please fill out the "Get Dealership" form on our website or contact
+                           our
+                           business development team at dealership@apar.com. Our team will evaluate your application
+                           based on market presence, infrastructure, and commitment to quality standards. We provide
+                           comprehensive training and marketing support to all our authorized partners.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="footer__bottom">
+            <span class="footer__copyright">&copy; 2026 APAR Industries Ltd. All Rights Reserved. Crafted with
+               premium
+               engineering.</span>
+            <div class="footer__socials">
+               <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+                     <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg></a>
+               <a href="#" class="social-link" aria-label="X"><svg viewBox="0 0 24 24">
+                     <path
+                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg></a>
+               <a href="#" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24">
+                     <path
+                        d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg></a>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+   <script src="./assets/js/script.js"></script>
+   <script src="./assets/js/gsap.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+/* Initial hidden states for GSAP animations */
+.quality-card,
+.feature-card,
+.contact-info__card,
+.faq-item,
+.footer__col {
+  opacity: 0;
+}
+
+.products-section .product-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+
+.tradition-section__content,
+.tradition-section__image-wrapper,
+.cta-parallax__left,
+.cta-parallax__right,
+.contact-form-wrapper {
+  opacity: 0;
+}
+
+product details /
+
+/* Product Detail Page - GSAP Animation Base Classes */
+
+.product-detail-grid > *,
+.breadcrumb,
+.specs-table-wrapper,
+.description-content,
+.related-grid .product-card,
+.enquiry-wrapper {
+  will-change: transform, opacity;
+}
+
+/* Initial hidden states for GSAP animations */
+.product-gallery,
+.product-info-detail,
+.specs-table-wrapper,
+.description-tabs,
+.tab-panel,
+.related-grid .product-card,
+.enquiry-wrapper {
+  opacity: 0;
+}

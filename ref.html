@@ -1,0 +1,3843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APAR — Navigation & Premium Footer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --nav-height: 72px;
+      /* NEW COLOR SYSTEM */
+      --primary: #32368c;
+      --primary-dark: #262a70;
+      --primary-light: #464ab0;
+      --secondary: #fded00;
+      --secondary-dark: #e0d100;
+      --tertiary: #ee3e3b;
+      --tertiary-dark: #d32f2c;
+      --bg: #fff;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --border: rgba(0, 0, 0, 0.08);
+      --grey-bg: linear-gradient(135deg, #ffffff 0%, #faf9f7 100%);
+      --grey-before-bg: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f2ef;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── NAVBAR ─── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .nav.scrolled {
+      box-shadow: var(--shadow);
+    }
+
+    .nav__inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+      margin-right: 40px;
+    }
+
+    .logo__mark {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .logo__mark img {
+      height: 100%;
+    }
+
+    .nav__menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .nav__item {
+      position: relative;
+    }
+
+    .nav__link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: var(--transition);
+      white-space: nowrap;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+
+    .nav__link:hover,
+    .nav__link.active {
+      color: var(--primary);
+      background: rgba(50, 54, 140, 0.06);
+    }
+
+    .nav__link--cta {
+      color: #fff !important;
+      background: var(--primary) !important;
+      padding: 8px 18px !important;
+      margin-left: 8px;
+      border-radius: 99px !important;
+      letter-spacing: 0.04em;
+      transition: all 0.3s ease;
+    }
+
+    .nav__link--cta:hover {
+      background: var(--primary-dark) !important;
+      box-shadow: 0 4px 12px rgba(50, 54, 140, 0.3) !important;
+      transform: translateY(-2px);
+    }
+
+    .chevron {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 0.22s ease;
+    }
+
+    .chevron svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav__item.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-heavy);
+      min-width: 220px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdown--wide {
+      min-width: 480px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 8px;
+      gap: 4px;
+    }
+
+    .dropdown--wide .dropdown__item {
+      border-radius: 10px;
+    }
+
+    .dropdown__header {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      padding: 14px 16px 6px;
+      grid-column: 1/-1;
+    }
+
+    .dropdown__divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+      grid-column: 1/-1;
+    }
+
+    .dropdown:not(.dropdown--wide) .dropdown__item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: var(--transition);
+      border-radius: 0;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .dropdown:not(.dropdown--wide) .dropdown__item:hover {
+      background: #f7f5f2;
+      color: var(--primary);
+    }
+
+    .dropdown--wide .dropdown__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: var(--transition);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .dropdown--wide .dropdown__item:hover {
+      background: #f7f5f2;
+      color: var(--primary);
+    }
+
+    .item__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #f4f2ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+
+    .dropdown__item:hover .item__icon {
+      background: rgba(50, 54, 140, 0.1);
+    }
+
+    .item__text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .item__title {
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.2;
+    }
+
+    .item__desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      padding-left: 24px;
+    }
+
+    .search-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: var(--transition);
+      flex-shrink: 0;
+      z-index: 2;
+    }
+
+    .search-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .search-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .search-panel {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1.5px solid var(--primary);
+      border-radius: 99px;
+      padding: 0 14px 0 16px;
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .search-panel.open {
+      width: 260px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .search-panel input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: var(--text);
+      flex: 1;
+      height: 36px;
+      padding: 0;
+      min-width: 0;
+    }
+
+    .search-panel input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .search-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .search-close:hover {
+      color: var(--text);
+    }
+
+    .search-close svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .hamburger:hover {
+      border-color: var(--primary);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 99px;
+      transition: transform 0.28s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .drawer {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 10, 10, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0s 0.3s;
+      z-index: 999;
+    }
+
+    .drawer.open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer__panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      max-height: calc(100vh - var(--nav-height));
+      overflow-y: auto;
+      transform: translateY(-100%);
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-bottom: 24px;
+    }
+
+    .drawer.open .drawer__panel {
+      transform: translateY(0);
+    }
+
+    .mob-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mob-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .mob-link:hover {
+      color: var(--primary);
+    }
+
+    .mob-chevron {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      transition: transform 0.22s ease;
+    }
+
+    .mob-chevron svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mob-item.open .mob-chevron {
+      transform: rotate(180deg);
+    }
+
+    .mob-submenu {
+      display: none;
+      background: #fafaf9;
+      border-top: 1px solid var(--border);
+    }
+
+    .mob-item.open .mob-submenu {
+      display: block;
+    }
+
+    .mob-sub-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px 12px 32px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .mob-sub-link:last-child {
+      border-bottom: none;
+    }
+
+    .mob-sub-link:hover {
+      color: var(--primary);
+      background: #f4f2ef;
+    }
+
+    .mob-sub-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: #f0ede9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .mob-sub-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .mob-sub-title {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .mob-sub-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .mob-actions {
+      padding: 20px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mob-cta {
+      display: block;
+      padding: 13px 20px;
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .mob-cta:hover {
+      background: var(--primary-dark);
+    }
+
+
+
+
+
+
+    /* ══════════════════════════════════ PREMIUM FOOTER (EXACT REFERENCE STYLE) ══════════════════════════════════ */
+    .footer {
+      /* background: #0B0F19; */
+      background: var(--primary);
+      color: var(--footer-text);
+      padding: 80px 32px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(50, 54, 140, 0.4), rgba(253, 237, 0, 0.2), rgba(50, 54, 140, 0.4), transparent);
+    }
+
+    .footer__inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer__brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .footer__logo-svg {
+      height: 38px;
+      width: auto;
+      fill: #FFFFFF;
+      transition: fill var(--transition-fast);
+    }
+
+    .footer__logo-svg:hover {
+      fill: var(--secondary);
+    }
+
+    .footer__brand-desc {
+      font-size: 14px;
+      color: #94A3B8;
+      line-height: 1.65;
+    }
+
+    .footer__col-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer__col-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: var(--secondary);
+      border-radius: 99px;
+    }
+
+    .footer__address-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .location-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .location-item__icon {
+      color: var(--secondary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .location-item__icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .location-item__text {
+      font-size: 13.5px;
+      color: #94A3B8;
+      line-height: 1.5;
+    }
+
+    .location-item__text strong {
+      color: #FFFFFF;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .location-item__link {
+      color: #94A3B8;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .location-item__link:hover {
+      color: var(--secondary);
+    }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer__copyright {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .footer__socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+      transform: translateY(-2.5px);
+    }
+
+    .social-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    @media(max-width: 1024px) {
+      .footer__grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media(max-width: 1190px) {
+      .nav__menu {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav__actions .nav__link--cta {
+        display: none;
+      }
+
+      .nav__inner {
+        padding: 0 20px;
+      }
+    }
+
+    @media(max-width: 860px) {
+      .nav__menu {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav__actions .nav__link--cta {
+        display: none;
+      }
+
+      .nav__inner {
+        padding: 0 20px;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer {
+        padding: 60px 20px 30px;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .search-panel.open {
+        width: 200px;
+      }
+    }
+  </style>
+
+  <style>
+    .swiper-slide img {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+
+  <!-- style for description secton -->
+  <style>
+    /* Quality Section */
+    .quality-section {
+      padding: 100px 32px;
+      /* background: linear-gradient(135deg, #ffffff 0%, #faf9f7 100%); */
+      position: relative;
+    }
+
+    .quality-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      /* background: linear-gradient(90deg, transparent, var(--border), transparent); */
+    }
+
+    .quality-section__inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .quality-section__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .quality-section__badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(50, 54, 140, 0.08);
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    .quality-section__title {
+      font-size: 38px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .quality-section__subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .quality-card {
+      background: #ffffff;
+      padding: 40px 32px;
+      border-radius: 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .quality-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(50, 54, 140, 0.15);
+      box-shadow: 0 20px 35px -12px rgba(50, 54, 140, 0.15);
+    }
+
+    .quality-card__icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .quality-card__icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: white;
+      stroke-width: 1.5;
+    }
+
+    .quality-card__title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .quality-card__desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .quality-section {
+        padding: 80px 24px;
+      }
+
+      .quality-section__title {
+        font-size: 32px;
+      }
+
+      .quality-grid {
+        gap: 24px;
+      }
+
+      .quality-card {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .quality-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .quality-section {
+        padding: 60px 20px;
+      }
+
+      .quality-section__title {
+        font-size: 28px;
+      }
+    }
+  </style>
+
+
+  <!-- Top product section css -->
+  <style>
+    /* Top Products Section - Updated */
+    .products-section {
+      padding: 100px 32px;
+      background: linear-gradient(135deg, #ffffff 0%, #faf9f7 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .products-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      pointer-events: none;
+    }
+
+    .products-section__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .products-section__header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .products-section__badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary, #fded00);
+      background: rgba(50, 54, 140, 0.08);
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    .products-section__title {
+      font-size: 42px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .products-section__subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Product Card */
+    .product-card {
+      /* background: #ffffff; */
+      background: #f8f8f8;
+      border-radius: 24px;
+      padding: 0 0 24px 0;
+      margin: 8px;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(0px);
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.005);
+      box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.35);
+      border-color: var(--primary);
+    }
+
+    .product-card__image {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .product-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-card__image img {
+      transform: scale(1.08);
+    }
+
+    .product-card__badge {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: linear-gradient(135deg, #fded00, #e0d100);
+      color: #1a1e4b;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card__title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 18px 20px 10px 20px;
+      font-family: 'Montserrat', sans-serif;
+      text-align: left;
+    }
+
+    .product-card__desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0 20px 18px 20px;
+      text-align: left;
+    }
+
+    .product-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 20px 18px 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .product-card__category {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary, #32368c);
+      background: rgba(50, 54, 140, 0.1);
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    .product-card__rating {
+      font-size: 12px;
+      color: #f5b042;
+      letter-spacing: 2px;
+    }
+
+    .product-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 20px;
+    }
+
+    .product-card__location {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+
+    .product-card__link {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary, #32368c);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      padding: 6px 0;
+    }
+
+    .product-card__link:hover {
+      color: var(--primary-dark, #262a70);
+      transform: translateX(4px);
+      display: inline-block;
+    }
+
+    /* Swiper Customization - No Conflict */
+    .productsSwiper {
+      padding: 16px 0 60px !important;
+      overflow: visible;
+    }
+
+    .products-section .swiper-slide {
+      background: transparent !important;
+      height: auto !important;
+    }
+
+    .products-section .swiper-pagination-bullet {
+      background: var(--primary);
+      opacity: 0.5;
+      width: 10px;
+      height: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .products-section .swiper-pagination-bullet-active {
+      opacity: 1;
+      width: 26px;
+      border-radius: 6px;
+      background: var(--primary);
+    }
+
+    .products-section .swiper-button-next,
+    .products-section .swiper-button-prev {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .products-section .swiper-button-next:hover,
+    .products-section .swiper-button-prev:hover {
+      background: var(--secondary, #fded00);
+      color: #1a1e4b;
+      transform: scale(1.08);
+    }
+
+    .products-section .swiper-button-next::after,
+    .products-section .swiper-button-prev::after {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .products-section {
+        padding: 80px 24px;
+      }
+
+      .products-section__title {
+        font-size: 34px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .products-section {
+        padding: 60px 20px;
+      }
+
+      .products-section__title {
+        font-size: 28px;
+      }
+
+      .product-card__image {
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      .products-section .swiper-button-next,
+      .products-section .swiper-button-prev {
+        display: none;
+      }
+    }
+  </style>
+
+
+  <!-- cta -->
+
+  <style>
+    /* Call to Action Section with Parallax - Split Layout */
+    .cta-parallax {
+      position: relative;
+      min-height: 440px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      background-image: url('https://plus.unsplash.com/premium_photo-1682145728214-dbd62535af3f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+
+    /* Fallback for browsers that don't support background-attachment: fixed */
+    @supports (background-attachment: fixed) {
+      .cta-parallax {
+        background-attachment: fixed;
+      }
+    }
+
+    /* Overlay for better text readability */
+    .cta-parallax__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(95deg,
+          rgba(0, 0, 0, 0.85) 0%,
+          rgba(0, 0, 0, 0.75) 30%,
+          rgba(50, 54, 140, 0.3) 60%,
+          rgba(0, 0, 0, 0.2) 100%);
+      z-index: 1;
+    }
+
+    .cta-parallax__inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 100px 32px;
+      width: 100%;
+    }
+
+    .cta-parallax__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    /* Left Column - Tag & Title */
+    .cta-parallax__left {
+      text-align: left;
+      animation: fadeInLeft 0.8s ease-out;
+    }
+
+    .cta-parallax__tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--secondary, #fded00);
+      background: rgba(253, 237, 0, 0.12);
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(4px);
+    }
+
+    .cta-parallax__title {
+      font-size: 42px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 0;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Right Column - Description & Button */
+    .cta-parallax__right {
+      /* text-align: right; */
+      animation: fadeInRight 0.8s ease-out;
+    }
+
+    .cta-parallax__desc {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    .cta-parallax__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--secondary, #fded00);
+      color: #1a1e4b;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 99px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-parallax__btn:hover {
+      background: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      gap: 14px;
+    }
+
+    .cta-parallax__btn:active {
+      transform: translateY(0px);
+    }
+
+    /* Animations */
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive Styles - Stack on mobile/tablet */
+    @media (max-width: 1024px) {
+      .cta-parallax {
+        min-height: 480px;
+        background-attachment: scroll;
+      }
+
+      .cta-parallax__inner {
+        padding: 80px 32px;
+      }
+
+      .cta-parallax__grid {
+        gap: 40px;
+      }
+
+      .cta-parallax__title {
+        font-size: 34px;
+      }
+
+      .cta-parallax__desc {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .cta-parallax__grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+      }
+
+      .cta-parallax__left {
+        text-align: center;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .cta-parallax__right {
+        text-align: center;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .cta-parallax__title {
+        font-size: 30px;
+      }
+
+      .cta-parallax__desc {
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cta-parallax {
+        min-height: 420px;
+      }
+
+      .cta-parallax__inner {
+        padding: 60px 24px;
+      }
+
+      .cta-parallax__title {
+        font-size: 26px;
+      }
+
+      .cta-parallax__desc {
+        font-size: 14px;
+      }
+
+      .cta-parallax__btn {
+        padding: 12px 28px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-parallax {
+        min-height: 380px;
+      }
+
+      .cta-parallax__inner {
+        padding: 50px 20px;
+      }
+
+      .cta-parallax__title {
+        font-size: 24px;
+      }
+
+      .cta-parallax__desc {
+        font-size: 13px;
+      }
+
+      .cta-parallax__btn {
+        padding: 11px 24px;
+        font-size: 12px;
+      }
+    }
+
+    /* Mobile fadeInUp animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+
+  <!-- data metrix -->
+  <style>
+    /* Key Metrics Section - Minimalist */
+    .metrics-simple {
+      padding: 80px 32px;
+      background: #ffffff;
+    }
+
+    .metrics-simple__inner {
+      max-width: 1200px;
+      margin: 0 auto 64px auto;
+    }
+
+    .metrics-simple__title {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 48px;
+    }
+
+    .metrics-simple__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .metric-simple__number {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--primary, #32368c);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .metric-simple__label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted, #6b6b6b);
+    }
+
+    .metric-simple__label strong {
+      color: var(--text, #1a1a1a);
+      font-weight: 700;
+      display: block;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .metrics-simple__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .metrics-simple__title {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .metrics-simple {
+        padding: 60px 20px;
+      }
+
+      .metrics-simple__grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .metric-simple__number {
+        font-size: 42px;
+      }
+    }
+  </style>
+
+
+
+  <!-- form section css -->
+
+  <style>
+    /* Get In Touch Section */
+    .contact-section {
+      padding: 100px 32px;
+      /* background: linear-gradient(135deg, #f8f7f5 0%, #ffffff 100%); */
+      position: relative;
+    }
+
+    .contact-section__inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .contact-section__header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .contact-section__badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary, #32368c);
+      background: rgba(50, 54, 140, 0.08);
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    .contact-section__title {
+      font-size: 42px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 16px;
+    }
+
+    .contact-section__subtitle {
+      font-size: 16px;
+      color: var(--text-muted, #6b6b6b);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 48px;
+    }
+
+    /* Contact Info Cards */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-info__card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px;
+      background: #ffffff;
+      border-radius: 24px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+
+    .contact-info__card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(50, 54, 140, 0.1);
+      box-shadow: 0 12px 25px -10px rgba(50, 54, 140, 0.12);
+    }
+
+    .contact-info__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(50, 54, 140, 0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info__card:hover .contact-info__icon {
+      background: var(--primary, #32368c);
+    }
+
+    .contact-info__icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--primary, #32368c);
+      transition: all 0.3s ease;
+    }
+
+    .contact-info__card:hover .contact-info__icon svg {
+      stroke: white;
+    }
+
+    .contact-info__content h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 8px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .contact-info__content p {
+      font-size: 14px;
+      color: var(--text-muted, #6b6b6b);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .contact-info__content a {
+      color: var(--text-muted, #6b6b6b);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .contact-info__content a:hover {
+      color: var(--primary, #32368c);
+    }
+
+    /* Contact Form */
+    .contact-form-wrapper {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .contact-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-form__group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text, #1a1a1a);
+      letter-spacing: 0.03em;
+    }
+
+    .required {
+      color: var(--tertiary, #ee3e3b);
+      font-size: 14px;
+    }
+
+    .contact-form__group input,
+    .contact-form__group textarea {
+      padding: 14px 18px;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      background: #fafafa;
+    }
+
+    .contact-form__group input:focus,
+    .contact-form__group textarea:focus {
+      outline: none;
+      border-color: var(--primary, #32368c);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(50, 54, 140, 0.08);
+    }
+
+    .contact-form__group input::placeholder,
+    .contact-form__group textarea::placeholder {
+      color: #b0b0b0;
+    }
+
+    /* Checkbox Styling */
+    .contact-form__checkbox {
+      margin: 8px 0 4px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-muted, #6b6b6b);
+      line-height: 1.45;
+    }
+
+    .checkbox-label input {
+      display: none;
+    }
+
+    .checkbox-custom {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      background: white;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-label input:checked+.checkbox-custom {
+      background: var(--primary, #32368c);
+      border-color: var(--primary, #32368c);
+      position: relative;
+    }
+
+    .checkbox-label input:checked+.checkbox-custom::after {
+      content: '✓';
+      position: absolute;
+      color: white;
+      font-size: 12px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .checkbox-label input:focus+.checkbox-custom {
+      border-color: var(--primary, #32368c);
+      box-shadow: 0 0 0 2px rgba(50, 54, 140, 0.2);
+    }
+
+    .checkbox-text a {
+      color: var(--primary, #32368c);
+      text-decoration: none;
+    }
+
+    .checkbox-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Submit Button */
+    .contact-form__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--primary, #32368c), var(--primary-dark, #262a70));
+      color: white;
+      border: none;
+      padding: 15px 32px;
+      border-radius: 99px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+
+    .contact-form__btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-form__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(50, 54, 140, 0.3);
+      gap: 16px;
+    }
+
+    .contact-form__btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    .contact-form__btn:active {
+      transform: translateY(0);
+    }
+
+    .contact-form__note {
+      font-size: 12px;
+      color: var(--text-muted, #6b6b6b);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .contact-section {
+        padding: 80px 24px;
+      }
+
+      .contact-section__title {
+        font-size: 36px;
+      }
+
+      .contact-grid {
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .contact-info__card {
+        flex: 1;
+        min-width: 240px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .contact-section {
+        padding: 60px 20px;
+      }
+
+      .contact-section__title {
+        font-size: 30px;
+      }
+
+      .contact-form-wrapper {
+        padding: 24px 20px;
+      }
+
+      .contact-form__row {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .contact-info {
+        flex-direction: column;
+      }
+
+      .contact-info__card {
+        min-width: auto;
+      }
+    }
+  </style>
+
+
+  <!-- footer faq -->
+
+  <style>
+    /* FAQ Accordion Styles - Footer */
+    .footer-faq {
+      margin-top: 60px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+
+    .footer-faq__header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .footer-faq__title {
+      font-size: 28px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .footer-faq__subtitle {
+      font-size: 14px;
+      color: #94A3B8;
+    }
+
+    .footer-faq__accordion {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* .faq-item {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(253, 237, 0, 0.2);
+    } */
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* .faq-question:hover {
+      background: rgba(253, 237, 0, 0.05);
+    } */
+
+    .faq-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      stroke: var(--secondary, #fded00);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Smooth Accordion using Grid */
+    .faq-answer-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-item.open .faq-answer-wrapper {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-answer {
+      overflow: hidden;
+      padding: 0 28px;
+    }
+
+    .faq-item.open .faq-answer {
+      padding: 0 28px 24px 28px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      color: #94A3B8;
+      line-height: 1.65;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .faq-item.open .faq-answer p {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.1s;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .footer-faq {
+        margin-top: 48px;
+        padding-top: 40px;
+      }
+
+      .footer-faq__title {
+        font-size: 24px;
+      }
+
+      .faq-question {
+        padding: 16px 20px;
+        font-size: 14px;
+      }
+
+      .faq-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .faq-item.open .faq-answer {
+        padding: 0 20px 20px 20px;
+      }
+
+      .faq-answer p {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-faq {
+        margin-top: 40px;
+        padding-top: 32px;
+      }
+
+      .footer-faq__title {
+        font-size: 22px;
+      }
+
+      .faq-question {
+        padding: 14px 16px;
+        font-size: 13px;
+      }
+
+      .faq-item.open .faq-answer {
+        padding: 0 16px 18px 16px;
+      }
+
+      .faq-answer p {
+        font-size: 12px;
+      }
+    }
+  </style>
+
+
+  <!-- latest procucts  -->
+
+  <style>
+    .latest-products-section {
+      padding: 100px 32px;
+      background: linear-gradient(135deg, #ffffff 0%, #faf9f7 100%);
+      position: relative;
+    }
+
+    .latest-products-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .latest-prod_btn__container {
+
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .cta-latest__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--primary, #32368c), var(--primary-dark, #262a70));
+      color: white;
+      border: none;
+      padding: 15px 32px;
+      border-radius: 99px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+
+    .cta-latest__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(50, 54, 140, 0.3);
+      gap: 16px;
+    }
+
+    .cta-latest__btn:active {
+      transform: translateY(0);
+    }
+  </style>
+
+  <!-- Fan -->
+
+  <style>
+    /* Tradition Meets Quality Section */
+    .tradition-section {
+      padding: 100px 32px;
+      background: linear-gradient(135deg, #ffffff 0%, #faf9f7 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tradition-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .tradition-section__inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    /* Left Side - Rotating Image */
+    .tradition-section__image-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .rotating-image {
+      width: 100%;
+      max-width: 450px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      animation: rotateClockwise 4s linear infinite;
+    }
+
+    .rotating-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes rotateClockwise {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Right Side - Content */
+    .tradition-section__content {
+      flex: 1;
+    }
+
+    .tradition-section__tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary, #32368c);
+      background: rgba(50, 54, 140, 0.08);
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 24px;
+    }
+
+    .tradition-section__title {
+      font-size: 38px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--text, #1a1a1a);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .tradition-section__desc {
+      font-size: 16px;
+      color: var(--text-muted, #6b6b6b);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .tradition-section__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--primary, #32368c), var(--primary-dark, #262a70));
+      color: white;
+      padding: 14px 32px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-bottom: 48px;
+    }
+
+    .tradition-section__btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(50, 54, 140, 0.3);
+      gap: 14px;
+    }
+
+    /* Feature Cards */
+    .tradition-features {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .feature-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .feature-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(50, 54, 140, 0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-card__icon {
+      background: var(--primary, #32368c);
+    }
+
+    .feature-card__icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--primary, #32368c);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-card__icon svg {
+      stroke: white;
+    }
+
+    .feature-card__text h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 6px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .feature-card__text p {
+      font-size: 14px;
+      color: var(--text-muted, #6b6b6b);
+      line-height: 1.5;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+      .tradition-section {
+        padding: 80px 32px;
+      }
+
+      .tradition-section__inner {
+        gap: 48px;
+      }
+
+      .tradition-section__title {
+        font-size: 32px;
+      }
+
+      .rotating-image {
+        max-width: 380px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .tradition-section__inner {
+        flex-direction: column;
+        gap: 48px;
+      }
+
+      .tradition-section__image-wrapper {
+        order: 1;
+      }
+
+      .tradition-section__content {
+        order: 2;
+        text-align: center;
+      }
+
+      .rotating-image {
+        max-width: 350px;
+      }
+
+      .tradition-section__title {
+        font-size: 30px;
+      }
+
+      .tradition-section__desc {
+        font-size: 15px;
+      }
+
+      .tradition-features {
+        text-align: left;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tradition-section {
+        padding: 60px 20px;
+      }
+
+      .tradition-section__title {
+        font-size: 26px;
+      }
+
+      .tradition-section__desc {
+        font-size: 14px;
+      }
+
+      .rotating-image {
+        max-width: 280px;
+      }
+
+      .feature-card {
+        gap: 14px;
+      }
+
+      .feature-card__icon {
+        width: 44px;
+        height: 44px;
+      }
+
+      .feature-card__icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .feature-card__text h4 {
+        font-size: 16px;
+      }
+
+      .feature-card__text p {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rotating-image {
+        max-width: 240px;
+        border-radius: 30px;
+      }
+
+      .tradition-section__btn {
+        padding: 12px 28px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
+  <header>
+    <nav class="nav" id="mainNav">
+      <div class="nav__inner">
+        <a href="#" class="nav__logo">
+          <div class="logo__mark">
+            <img src="logo.png" alt="">
+          </div>
+        </a>
+        <ul class="nav__menu" id="navMenu">
+          <li class="nav__item"><a href="./page-about.html" class="nav__link">About Us</a></li>
+          <li class="nav__item" id="item-businesses">
+            <button class="nav__link" aria-expanded="false">
+              Businesses <span class="chevron"><svg viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg></span>
+            </button>
+            <div class="dropdown dropdown--wide">
+              <span class="dropdown__header">Our Business Units</span>
+              <a href="#" class="dropdown__item">
+                <div class="item__icon">🔌</div>
+                <div class="item__text"><span class="item__title">Cables &amp; Wires</span><span
+                    class="item__desc">Power,
+                    specialty &amp; flexible cables</span></div>
+              </a>
+              <a href="#" class="dropdown__item">
+                <div class="item__icon">🛢️</div>
+                <div class="item__text"><span class="item__title">Lubricants &amp; Oils</span><span
+                    class="item__desc">Industrial &amp; automotive lubricants</span></div>
+              </a>
+              <a href="#" class="dropdown__item">
+                <div class="item__icon">🚗</div>
+                <div class="item__text"><span class="item__title">Automotive</span><span class="item__desc">OEM &amp;
+                    aftermarket solutions</span></div>
+              </a>
+              <a href="#" class="dropdown__item">
+                <div class="item__icon">⚡</div>
+                <div class="item__text"><span class="item__title">Transformer Oils</span><span
+                    class="item__desc">Electrical insulation &amp; cooling</span></div>
+              </a>
+            </div>
+          </li>
+          <li class="nav__item" id="item-investors">
+            <button class="nav__link" aria-expanded="false">Investors <span class="chevron"><svg viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg></span></button>
+            <div class="dropdown"><a href="#" class="dropdown__item">Annual Reports</a><a href="#"
+                class="dropdown__item">Financial Results</a><a href="#" class="dropdown__item">Stock Information</a><a
+                href="#" class="dropdown__item">Board of Directors</a>
+              <div class="dropdown__divider"></div><a href="#" class="dropdown__item">Investor Presentations</a>
+            </div>
+          </li>
+          <li class="nav__item"><a href="#" class="nav__link">Products</a></li>
+          <li class="nav__item" id="item-resources">
+            <button class="nav__link" aria-expanded="false">Resources <span class="chevron"><svg viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg></span></button>
+            <div class="dropdown"><a href="#" class="dropdown__item">Brochures &amp; Catalogues</a><a href="#"
+                class="dropdown__item">Technical Datasheets</a><a href="#" class="dropdown__item">Media &amp;
+                Press</a><a href="#" class="dropdown__item">Blog &amp; Insights</a></div>
+          </li>
+          <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+        </ul>
+        <div class="nav__actions">
+          <div class="search-wrap" id="searchWrap">
+            <div class="search-panel" id="searchPanel"><input type="text" id="searchInput"
+                placeholder="Search products, news…" autocomplete="off"><button class="search-close"
+                id="searchClose"><svg viewBox="0 0 24 24">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg></button></div>
+            <button class="search-btn" id="searchBtn"><svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg></button>
+          </div>
+          <a href="#" class="nav__link nav__link--cta">Get Dealership</a>
+          <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="drawer" id="drawer">
+      <div class="drawer__panel">
+        <div class="mob-item"><a href="./page-about.html" class="mob-link">About Us</a></div>
+        <div class="mob-item" id="mob-businesses"><button class="mob-link" id="mob-btn-businesses">Businesses<span
+              class="mob-chevron"><svg viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="mob-submenu"><a href="#" class="mob-sub-link">
+              <div class="mob-sub-icon">🔌</div>
+              <div class="mob-sub-text"><span class="mob-sub-title">Cables &amp; Wires</span><span
+                  class="mob-sub-desc">Power, specialty &amp; flexible cables</span></div>
+            </a><a href="#" class="mob-sub-link">
+              <div class="mob-sub-icon">🛢️</div>
+              <div class="mob-sub-text"><span class="mob-sub-title">Lubricants &amp; Oils</span><span
+                  class="mob-sub-desc">Industrial &amp; automotive lubricants</span></div>
+            </a><a href="#" class="mob-sub-link">
+              <div class="mob-sub-icon">🚗</div>
+              <div class="mob-sub-text"><span class="mob-sub-title">Automotive</span><span class="mob-sub-desc">OEM
+                  &amp;
+                  aftermarket solutions</span></div>
+            </a><a href="#" class="mob-sub-link">
+              <div class="mob-sub-icon">⚡</div>
+              <div class="mob-sub-text"><span class="mob-sub-title">Transformer Oils</span><span
+                  class="mob-sub-desc">Electrical insulation &amp; cooling</span></div>
+            </a></div>
+        </div>
+        <div class="mob-item" id="mob-investors"><button class="mob-link" id="mob-btn-investors">Investors<span
+              class="mob-chevron"><svg viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="mob-submenu"><a href="#" class="mob-sub-link">Annual Reports</a><a href="#"
+              class="mob-sub-link">Financial Results</a><a href="#" class="mob-sub-link">Stock Information</a><a
+              href="#" class="mob-sub-link">Board of Directors</a><a href="#" class="mob-sub-link">Investor
+              Presentations</a></div>
+        </div>
+        <div class="mob-item"><a href="./product-listing.html" class="mob-link">Products</a></div>
+        <div class="mob-item" id="mob-resources"><button class="mob-link" id="mob-btn-resources">Resources<span
+              class="mob-chevron"><svg viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></span></button>
+          <div class="mob-submenu"><a href="#" class="mob-sub-link">Brochures &amp; Catalogues</a><a href="#"
+              class="mob-sub-link">Technical Datasheets</a><a href="#" class="mob-sub-link">Media &amp; Press</a><a
+              href="#" class="mob-sub-link">Blog &amp; Insights</a></div>
+        </div>
+        <div class="mob-item"><a href="#" class="mob-link">Contact</a></div>
+        <div class="mob-actions"><a href="#" class="mob-cta">Get Dealership</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Slider Section -->
+    <section>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+          <div class="swiper-slide"><img
+              src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg" alt="">
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Description section -->
+    <!-- Quality & Capabilities Section -->
+    <section class="quality-section">
+      <div class="quality-section__inner">
+        <div class="quality-section__header">
+          <span class="quality-section__badge">Why Choose APAR</span>
+          <h2 class="quality-section__title">Engineered Excellence Across Every Frontier</h2>
+          <p class="quality-section__subtitle">Delivering innovation, reliability, and precision in cables, lubricants &
+            transformer oils</p>
+        </div>
+
+
+        <!-- <div class="metrics-simple__inner">
+          <div class="metrics-simple__grid">
+            <div class="metric-simple">
+              <div class="metric-simple__number">1</div>
+              <div class="metric-simple__label">Cable Sold Every <strong>3 Seconds</strong></div>
+            </div>
+            <div class="metric-simple">
+              <div class="metric-simple__number">4,000+</div>
+              <div class="metric-simple__label">Products & Variants</div>
+            </div>
+            <div class="metric-simple">
+              <div class="metric-simple__number">140+</div>
+              <div class="metric-simple__label">Countries Served</div>
+            </div>
+            <div class="metric-simple">
+              <div class="metric-simple__number">10Cr+</div>
+              <div class="metric-simple__label">Households & Industries</div>
+            </div>
+          </div>
+        </div> -->
+
+
+        <div class="quality-grid">
+          <!-- Card 1 -->
+          <div class="quality-card">
+            <div class="quality-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 3L5 6.99h3V14h2V6.99h3L9 3z" />
+                <path d="M19 10l-4 4h3v7h2v-7h3l-4-4z" />
+                <circle cx="5" cy="17" r="2" />
+                <circle cx="19" cy="17" r="2" />
+              </svg>
+            </div>
+            <h3 class="quality-card__title">Diverse Quality Products</h3>
+            <p class="quality-card__desc">Comprehensive portfolio of power cables, control cables, specialty wires,
+              industrial lubricants & transformer oils engineered for critical infrastructure.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="quality-card">
+            <div class="quality-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 12H4M12 4v16M3 3l3 3m12-3l-3 3M3 21l3-3m12 3l-3-3" />
+                <path d="M7 7h10M7 17h10" />
+              </svg>
+            </div>
+            <h3 class="quality-card__title">Advanced Manufacturing</h3>
+            <p class="quality-card__desc">State-of-the-art facilities with automated production lines, precision testing
+              labs, and hygienic processing for superior product consistency.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="quality-card">
+            <div class="quality-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <h3 class="quality-card__title">Unwavering Quality Commitment</h3>
+            <p class="quality-card__desc">ISO-certified processes, rigorous multi-stage testing, and global compliance
+              standards ensuring zero-defect delivery across 140+ countries.</p>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+
+    <!-- Fan -->
+    <!-- Tradition Meets Quality Section -->
+    <section class="tradition-section">
+      <div class="tradition-section__inner">
+        <!-- Left Side: Rotating Image -->
+        <div class="tradition-section__image-wrapper">
+          <div class="rotating-image">
+            <img src="./fan.png" alt="APAR Quality Products">
+          </div>
+        </div>
+
+        <!-- Right Side: Content -->
+        <div class="tradition-section__content">
+          <span class="tradition-section__tag">Traditional Meets Quality</span>
+          <h2 class="tradition-section__title">YOUR SATISFACTION HAS ALWAYS BEEN OUR COMMITMENT.</h2>
+          <p class="tradition-section__desc">
+            Enjoy the best quality electrical products ever that you have experienced with a bunch of innovations to
+            explore.
+          </p>
+          <a href="#" class="tradition-section__btn">Explore More →</a>
+
+          <!-- Feature Cards -->
+          <div class="tradition-features">
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M20 7L4 7M16 21L8 21M12 3L12 21M9 7L9 12M15 7L15 12" />
+                  <rect x="5" y="7" width="14" height="12" rx="2" ry="2" />
+                </svg>
+              </div>
+              <div class="feature-card__text">
+                <h4>Diverse Quality Products</h4>
+                <p>We offer you the diverse quality products you can have.</p>
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" />
+                  <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" />
+                </svg>
+              </div>
+              <div class="feature-card__text">
+                <h4>Advance Hygienic Production</h4>
+                <p>We uphold advanced hygiene in production.</p>
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v4l3 3" />
+                  <path d="M12 2a10 10 0 0 0-6.5 17.5" />
+                </svg>
+              </div>
+              <div class="feature-card__text">
+                <h4>Unwavering Quality Commitment</h4>
+                <p>We ensure the highest quality in every product.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Top product section -->
+    <!-- Top Products Section -->
+    <!-- Top Products Section -->
+    <section class="products-section">
+      <div class="products-section__inner">
+        <div class="products-section__header">
+          <span class="products-section__badge">Premium Range</span>
+          <h2 class="products-section__title">Our Top Products</h2>
+          <p class="products-section__subtitle">Engineered for performance, trusted by industries worldwide</p>
+        </div>
+
+        <div class="swiper productsSwiper">
+          <div class="swiper-wrapper">
+            <!-- Product Card 1 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Power Cables">
+                </div>
+                <div class="product-card__badge">Bestseller</div>
+                <h3 class="product-card__title">Power & Control Cables</h3>
+                <p class="product-card__desc">XLPE insulated, armoured/unarmoured cables for industrial & utility
+                  applications</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Cables</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Pan India Supply</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Transformer Oils">
+                </div>
+                <div class="product-card__badge">Premium</div>
+                <h3 class="product-card__title">Transformer Oils</h3>
+                <p class="product-card__desc">High-grade electrical insulating oils for power transformers & switchgears
+                </p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Lubricants</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Global Export</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Industrial Lubricants">
+                </div>
+                <div class="product-card__badge">New</div>
+                <h3 class="product-card__title">Industrial Lubricants</h3>
+                <p class="product-card__desc">Hydraulic oils, gear oils, greases for heavy machinery & automotive</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Automotive</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 5 Manufacturing Hubs</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Specialty Wires">
+                </div>
+                <div class="product-card__badge">Trusted</div>
+                <h3 class="product-card__title">Specialty Wires</h3>
+                <p class="product-card__desc">Submersible, welding, solar, and winding wires for diverse applications
+                </p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Cables</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 140+ Countries</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Bio Oils">
+                </div>
+                <div class="product-card__badge">Eco+</div>
+                <h3 class="product-card__title">Bio-Degradable Oils</h3>
+                <p class="product-card__desc">Environment-friendly transformer oils with superior biodegradability</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Green Energy</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Eco-Certified</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Auto Lubricants">
+                </div>
+                <div class="product-card__badge">Heavy Duty</div>
+                <h3 class="product-card__title">Automotive Lubricants</h3>
+                <p class="product-card__desc">Engine oils, transmission fluids for passenger & commercial vehicles</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Automotive</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 OEM Approved</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 7 - Duplicate for seamless loop -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Solar Cables">
+                </div>
+                <div class="product-card__badge">Solar</div>
+                <h3 class="product-card__title">Solar Cables</h3>
+                <p class="product-card__desc">UV resistant, halogen-free cables for photovoltaic systems</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Renewable</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Solar Certified</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 8 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Industrial Greases">
+                </div>
+                <div class="product-card__badge">Industrial</div>
+                <h3 class="product-card__title">Industrial Greases</h3>
+                <p class="product-card__desc">High-temperature, extreme-pressure greases for bearings & machinery</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Lubricants</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Heavy Duty</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- latest products -->
+    <section class="products-section latest-products-section">
+      <div class="products-section__inner">
+        <div class="products-section__header">
+          <span class="products-section__badge">Premium Range</span>
+          <h2 class="products-section__title">Our Latest Products</h2>
+          <p class="products-section__subtitle">Engineered for performance, trusted by industries worldwide</p>
+        </div>
+
+        <div class="swiper productsSwiper">
+          <div class="swiper-wrapper">
+            <!-- Product Card 1 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Power Cables">
+                </div>
+                <div class="product-card__badge">Bestseller</div>
+                <h3 class="product-card__title">Power & Control Cables</h3>
+                <p class="product-card__desc">XLPE insulated, armoured/unarmoured cables for industrial & utility
+                  applications</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Cables</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Pan India Supply</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Transformer Oils">
+                </div>
+                <div class="product-card__badge">Premium</div>
+                <h3 class="product-card__title">Transformer Oils</h3>
+                <p class="product-card__desc">High-grade electrical insulating oils for power transformers & switchgears
+                </p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Lubricants</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Global Export</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Industrial Lubricants">
+                </div>
+                <div class="product-card__badge">New</div>
+                <h3 class="product-card__title">Industrial Lubricants</h3>
+                <p class="product-card__desc">Hydraulic oils, gear oils, greases for heavy machinery & automotive</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Automotive</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 5 Manufacturing Hubs</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Specialty Wires">
+                </div>
+                <div class="product-card__badge">Trusted</div>
+                <h3 class="product-card__title">Specialty Wires</h3>
+                <p class="product-card__desc">Submersible, welding, solar, and winding wires for diverse applications
+                </p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Cables</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 140+ Countries</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Bio Oils">
+                </div>
+                <div class="product-card__badge">Eco+</div>
+                <h3 class="product-card__title">Bio-Degradable Oils</h3>
+                <p class="product-card__desc">Environment-friendly transformer oils with superior biodegradability</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Green Energy</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Eco-Certified</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Auto Lubricants">
+                </div>
+                <div class="product-card__badge">Heavy Duty</div>
+                <h3 class="product-card__title">Automotive Lubricants</h3>
+                <p class="product-card__desc">Engine oils, transmission fluids for passenger & commercial vehicles</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Automotive</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 OEM Approved</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 7 - Duplicate for seamless loop -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Solar Cables">
+                </div>
+                <div class="product-card__badge">Solar</div>
+                <h3 class="product-card__title">Solar Cables</h3>
+                <p class="product-card__desc">UV resistant, halogen-free cables for photovoltaic systems</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Renewable</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Solar Certified</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 8 -->
+            <div class="swiper-slide">
+              <div class="product-card">
+                <div class="product-card__image">
+                  <img
+                    src="https://rathielectricals.com/upload/content/category/categoryimage-2023-04-05-08-08-31-3x3.jpg"
+                    alt="Industrial Greases">
+                </div>
+                <div class="product-card__badge">Industrial</div>
+                <h3 class="product-card__title">Industrial Greases</h3>
+                <p class="product-card__desc">High-temperature, extreme-pressure greases for bearings & machinery</p>
+                <div class="product-card__meta">
+                  <span class="product-card__category">Lubricants</span>
+
+                </div>
+                <div class="product-card__footer">
+                  <span class="product-card__location">📍 Heavy Duty</span>
+                  <a href="#" class="product-card__link">View Details →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="latest-prod_btn__container">
+          <a href="#" class="cta-latest__btn">Explore Our Facilities →</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- latest products  -->
+
+
+    <!-- cta -->
+
+    <!-- Call to Action Section with Parallax -->
+    <!-- Call to Action Section with Parallax - Split Layout -->
+    <section class="cta-parallax">
+      <div class="cta-parallax__overlay"></div>
+      <div class="cta-parallax__inner">
+        <div class="cta-parallax__grid">
+          <!-- Left Column: Tag + Title -->
+          <div class="cta-parallax__left">
+            <span class="cta-parallax__tag">APAR INDUSTRIES</span>
+            <h2 class="cta-parallax__title">Pioneering Engineered Excellence in Wires & Lubricants</h2>
+          </div>
+
+          <!-- Right Column: Description + Button -->
+          <div class="cta-parallax__right">
+            <p class="cta-parallax__desc">
+              Our cutting-edge manufacturing facilities feature automated production lines, innovative quality control
+              systems,
+              and advanced material handling with top-tier efficiency and global standards.
+            </p>
+            <a href="#" class="cta-parallax__btn">Explore Our Facilities →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Form section -->
+    <!-- Get In Touch Section -->
+    <section class="contact-section">
+      <div class="contact-section__inner">
+        <div class="contact-section__header">
+          <span class="contact-section__badge">Get In Touch</span>
+          <h2 class="contact-section__title">Let's Connect</h2>
+          <p class="contact-section__subtitle">Have a query about our products, services, or dealership opportunities?
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left Column: Contact Info -->
+          <div class="contact-info">
+            <div class="contact-info__card">
+              <div class="contact-info__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                </svg>
+              </div>
+              <div class="contact-info__content">
+                <h4>Call Us</h4>
+                <p>Toll-Free: <a href="tel:18000000000">1800-XXX-XXXX</a></p>
+                <p>Office: <a href="tel:+912267808000">+91 22 6780 8000</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info__card">
+              <div class="contact-info__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div class="contact-info__content">
+                <h4>Email Us</h4>
+                <p><a href="mailto:corporate@apar.com">corporate@apar.com</a></p>
+                <p><a href="mailto:sales@apar.com">sales@apar.com</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info__card">
+              <div class="contact-info__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="contact-info__content">
+                <h4>Visit Us</h4>
+                <p>Corporate Park, Sion-Trombay Road,<br>Chembur, Mumbai - 400071</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Contact Form -->
+          <div class="contact-form-wrapper">
+            <form class="contact-form" id="contactForm" action="#" method="POST">
+              <div class="contact-form__row">
+                <div class="contact-form__group">
+                  <label for="fullname">Full Name <span class="required">*</span></label>
+                  <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+                </div>
+
+                <div class="contact-form__group">
+                  <label for="email">Email Address <span class="required">*</span></label>
+                  <input type="email" id="email" name="email" required placeholder="you@example.com">
+                </div>
+              </div>
+
+              <div class="contact-form__group">
+                <label for="phone">Phone Number (Optional)</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX">
+              </div>
+
+              <div class="contact-form__group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" rows="4" required
+                  placeholder="Tell us about your query or requirement..."></textarea>
+              </div>
+
+              <div class="contact-form__checkbox">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="terms" name="terms" required>
+                  <span class="checkbox-custom"></span>
+                  <span class="checkbox-text">I have read and agree to the <a href="#">Terms & Conditions</a> and <a
+                      href="#">Privacy Policy</a>.<span class="required">*</span></span>
+                </label>
+              </div>
+
+              <button type="submit" class="contact-form__btn">
+                <span>Send Message</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+
+              <p class="contact-form__note">* Required fields. We'll get back to you within 24-48 hours.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Metrics Section - Minimalist -->
+    <!-- <section class="metrics-simple">
+      <div class="metrics-simple__inner">
+        <h2 class="metrics-simple__title">India's Most Trusted Name in Wires & Lubricants</h2>
+
+        <div class="metrics-simple__grid">
+          <div class="metric-simple">
+            <div class="metric-simple__number">1</div>
+            <div class="metric-simple__label">Cable Sold Every <strong>3 Seconds</strong></div>
+          </div>
+          <div class="metric-simple">
+            <div class="metric-simple__number">4,000+</div>
+            <div class="metric-simple__label">Products & Variants</div>
+          </div>
+          <div class="metric-simple">
+            <div class="metric-simple__number">140+</div>
+            <div class="metric-simple__label">Countries Served</div>
+          </div>
+          <div class="metric-simple">
+            <div class="metric-simple__number">10Cr+</div>
+            <div class="metric-simple__label">Households & Industries</div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+  </main>
+
+
+  <!-- ══════════════════════════════════ PREMIUM FOOTER (EXACT REFERENCE LAYOUT) ══════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+
+        <!-- Brand & Corporate Identity Column -->
+        <div class="footer__brand-col">
+          <a href="#" style="text-decoration: none; display: inline-block;">
+            <div class="logo__mark">
+              <img src="logo.png" alt="APAR Industries Logo">
+            </div>
+          </a>
+          <p class="footer__brand-desc">
+            APAR Industries is a dynamic global leader in engineered wires, premium industrial &amp; automotive
+            lubricants, and advanced transformer oil solutions powering infrastructures across 140+ countries.
+          </p>
+        </div>
+
+        <!-- HEAD OFFICE Column -->
+        <div class="footer__col">
+          <h4 class="footer__col-title">Head Office</h4>
+          <div class="footer__address-block">
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <strong>APAR House (Corporate)</strong>
+                Corporate Park, Sion-Trombay Road, Chembur, Mumbai - 400071, Maharashtra, India.
+              </span>
+            </div>
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <a class="location-item__link" href="tel:+912267808000">+91 22 6780 8000</a>
+              </span>
+            </div>
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <a class="location-item__link" href="mailto:corporate@apar.com">corporate@apar.com</a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BRANCH OFFICE Column -->
+        <div class="footer__col">
+          <h4 class="footer__col-title">Branch Office</h4>
+          <div class="footer__address-block">
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <strong>New Delhi Office</strong>
+                301, Arunachal Building, 19 Barakhamba Road, New Delhi - 110001, India.
+              </span>
+            </div>
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <a class="location-item__link" href="tel:+911123313233">+91 11 2331 3233</a>
+              </span>
+            </div>
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <a class="location-item__link" href="mailto:delhi@apar.com">delhi@apar.com</a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MANUFACTURING PLANTS Column -->
+        <div class="footer__col">
+          <h4 class="footer__col-title">Manufacturing Plants</h4>
+          <div class="footer__address-block">
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <strong>Rabale Oil Plant</strong>
+                Plot No. T-2, TTC Industrial Area, Thane-Belapur Road, Navi Mumbai - 400701, India.
+              </span>
+            </div>
+            <div class="location-item">
+              <span class="location-item__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </span>
+              <span class="location-item__text">
+                <strong>Athola Cable Plant</strong>
+                Survey No. 182 &amp; 183, Village Athola, Dadra &amp; Nagar Haveli - 396230, India.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion Section -->
+      <!-- FAQ Accordion Section -->
+      <div class="footer-faq">
+        <!-- <div class="footer-faq__header">
+          <h3 class="footer-faq__title">Frequently Asked Questions</h3>
+          <p class="footer-faq__subtitle">Find quick answers to common queries about our products and services</p>
+        </div> -->
+
+        <div class="footer-faq__accordion">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What types of cables does APAR Industries manufacture?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer">
+                <p>APAR Industries manufactures a comprehensive range of cables including power cables, control cables,
+                  instrument cables, specialty cables, solar cables, submersible cables, welding cables, and winding
+                  wires. Our products cater to diverse industries including power generation, transmission,
+                  distribution, oil & gas, renewable energy, and infrastructure projects.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is the warranty period for APAR products?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer">
+                <p>APAR offers industry-leading warranty periods across our product range. Cables come with a standard
+                  warranty of 12-18 months from the date of dispatch, while our transformer oils and industrial
+                  lubricants come with a 24-month warranty when stored under recommended conditions. Extended warranty
+                  options are available for bulk and long-term projects. Please contact our customer service for
+                  specific warranty details.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Does APAR provide customized solutions for specific industry requirements?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer">
+                <p>Yes, APAR has a dedicated R&D team that works closely with clients to develop customized solutions.
+                  Whether you need cables with specific insulation properties, transformer oils with particular
+                  viscosity grades, or industrial lubricants formulated for extreme operating conditions, our
+                  engineering team can tailor products to meet your exact specifications. Contact our technical support
+                  team to discuss your requirements.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How can I become an authorized dealer or distributor for APAR products?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div class="faq-answer-wrapper">
+              <div class="faq-answer">
+                <p>APAR welcomes partnership inquiries from qualified distributors and dealers. To become an authorized
+                  partner, please fill out the "Get Dealership" form on our website or contact our business development
+                  team at dealership@apar.com. Our team will evaluate your application based on market presence,
+                  infrastructure, and commitment to quality standards. We provide comprehensive training and marketing
+                  support to all our authorized partners.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom: Copyright & Socials -->
+      <div class="footer__bottom">
+        <span class="footer__copyright">
+          &copy; 2026 APAR Industries Ltd. All Rights Reserved. Crafted with premium engineering.
+        </span>
+        <div class="footer__socials">
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="X">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  </script>
+
+
+  <!-- Top product section js -->
+  <script>
+    // Initialize Products Swiper with Auto-slide, Loop, and Responsive Breakpoints
+    // Using a unique variable name to avoid conflicts with other Swipers
+    document.addEventListener('DOMContentLoaded', function () {
+      if (document.querySelector('.productsSwiper')) {
+        var productsSlider = new Swiper(".productsSwiper", {
+          slidesPerView: 1,
+          spaceBetween: 24,
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            dynamicBullets: false,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 28,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 32,
+            }
+          },
+          // Performance & UX
+          speed: 800,
+          effect: 'slide',
+          grabCursor: true,
+          preventClicks: false,
+          watchOverflow: true,
+          autoHeight: false,
+        });
+      }
+    });
+  </script>
+
+
+  <!-- cta -->
+  <script>
+    // Optional: Enhanced Parallax handling for mobile devices
+    function handleParallax() {
+      const ctaSection = document.querySelector('.cta-parallax');
+      if (!ctaSection) return;
+
+      // Check if device supports fixed backgrounds properly
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isFirefox = navigator.userAgent.indexOf('Firefox') > -1;
+
+      if (isMobile || isFirefox) {
+        ctaSection.style.backgroundAttachment = 'scroll';
+      } else {
+        ctaSection.style.backgroundAttachment = 'fixed';
+      }
+    }
+
+    // Run on load and resize
+    window.addEventListener('load', handleParallax);
+    window.addEventListener('resize', handleParallax);
+  </script>
+
+  <!-- Footer accorfian -->
+
+  <script>
+    // FAQ Accordion Functionality - Smooth Grid Animation
+    document.addEventListener('DOMContentLoaded', function () {
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach((item) => {
+        const questionBtn = item.querySelector('.faq-question');
+
+        questionBtn.addEventListener('click', function () {
+          // Toggle current item
+          const isOpen = item.classList.contains('open');
+
+          // Close all other items (optional - uncomment for exclusive accordion)
+          // faqItems.forEach(otherItem => {
+          //   if (otherItem !== item && otherItem.classList.contains('open')) {
+          //     otherItem.classList.remove('open');
+          //   }
+          // });
+
+          // Toggle current
+          item.classList.toggle('open');
+
+          // Update aria-expanded for accessibility
+          const expanded = item.classList.contains('open');
+          questionBtn.setAttribute('aria-expanded', expanded);
+        });
+
+        // Initialize aria attributes
+        questionBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+
+  <!-- main -->
+  <script>
+    const nav = document.getElementById('mainNav');
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchPanel = document.getElementById('searchPanel');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+
+    const dropdownItems = document.querySelectorAll('.nav__item[id^="item-"]');
+    dropdownItems.forEach(item => {
+      const btn = item.querySelector('.nav__link');
+      const dd = item.querySelector('.dropdown');
+      if (!dd) return;
+      let closeTimer;
+      const open = () => { clearTimeout(closeTimer); dropdownItems.forEach(other => { if (other !== item) { other.classList.remove('open'); other.querySelector('.dropdown')?.classList.remove('open'); other.querySelector('[aria-expanded]')?.setAttribute('aria-expanded', 'false'); } }); item.classList.add('open'); dd.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); };
+      const close = () => { closeTimer = setTimeout(() => { item.classList.remove('open'); dd.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }, 120); };
+      item.addEventListener('mouseenter', open); item.addEventListener('mouseleave', close); dd.addEventListener('mouseenter', () => clearTimeout(closeTimer)); dd.addEventListener('mouseleave', close);
+      btn.addEventListener('click', e => { e.preventDefault(); item.classList.contains('open') ? close() : open(); });
+    });
+    document.addEventListener('click', e => { if (!e.target.closest('#navMenu')) { dropdownItems.forEach(item => { item.classList.remove('open'); item.querySelector('.dropdown')?.classList.remove('open'); item.querySelector('[aria-expanded]')?.setAttribute('aria-expanded', 'false'); }); } });
+
+    hamburger.addEventListener('click', () => { const isOpen = drawer.classList.toggle('open'); hamburger.classList.toggle('open', isOpen); hamburger.setAttribute('aria-expanded', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
+    drawer.addEventListener('click', e => { if (e.target === drawer) { drawer.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; } });
+    ['businesses', 'investors', 'resources'].forEach(key => { const btn = document.getElementById(`mob-btn-${key}`); const wrap = document.getElementById(`mob-${key}`); if (btn && wrap) btn.addEventListener('click', () => { wrap.classList.toggle('open');['businesses', 'investors', 'resources'].forEach(k => { if (k !== key) document.getElementById(`mob-${k}`)?.classList.remove('open'); }); }); });
+
+    searchBtn.addEventListener('click', e => { e.stopPropagation(); searchPanel.classList.add('open'); searchBtn.style.opacity = '0'; searchBtn.style.pointerEvents = 'none'; setTimeout(() => searchInput.focus(), 320); });
+    const closeSearch = () => { searchPanel.classList.remove('open'); searchInput.value = ''; setTimeout(() => { searchBtn.style.opacity = '1'; searchBtn.style.pointerEvents = 'auto'; }, 300); };
+    searchClose.addEventListener('click', closeSearch); document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+    document.addEventListener('click', e => { if (!e.target.closest('#searchWrap')) closeSearch(); });
+    searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') { const q = searchInput.value.trim(); if (q) console.log('Search:', q); closeSearch(); } });
+  </script>
+
+
+</body>
+
+</html>
