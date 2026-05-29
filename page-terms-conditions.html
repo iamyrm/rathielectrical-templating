@@ -17,141 +17,7 @@
 
    <link rel="stylesheet" href="./assets/css/style.css">
    <link rel="stylesheet" href="./assets/css/gsap.css">
-   <style>
-     /* Terms & Conditions Page - Matching Privacy Policy Layout */
-.terms-page {
-  padding-top: 72px;
-}
 
-.terms-page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* Hero Section */
-.terms-page-hero {
-  padding: 80px 0 50px;
-  background: linear-gradient(135deg, #f8f7f5 0%, #ffffff 100%);
-  text-align: center;
-}
-
-.terms-page-hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.terms-page-title {
-  font-size: 48px;
-  font-weight: 700;
-  font-family: 'Playfair Display', serif;
-  color: #1a1a1a;
-  margin-bottom: 16px;
-}
-
-.terms-page-subtitle {
-  font-size: 16px;
-  color: #6b6b6b;
-}
-
-/* Content Section */
-.terms-page-content {
-  padding: 60px 0 80px;
-  background: #faf9f7;
-}
-
-.terms-page-intro {
-  font-size: 18px;
-  color: #32368c;
-  font-weight: 500;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 20px;
-}
-
-.terms-page-warning {
-  font-size: 16px;
-  color: #ee3e3b;
-  font-weight: 500;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-/* Content Blocks */
-.terms-page-block {
-  max-width: 900px;
-  margin: 0 auto 40px;
-}
-
-.terms-page-block-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #32368c;
-  margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.terms-page-text {
-  font-size: 15px;
-  color: #4a4a4a;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .terms-page-container {
-    padding: 0 20px;
-  }
-  .terms-page-hero {
-    padding: 60px 0 30px;
-  }
-  .terms-page-title {
-    font-size: 32px;
-  }
-  .terms-page-intro {
-    font-size: 16px;
-  }
-  .terms-page-warning {
-    font-size: 14px;
-    margin-bottom: 35px;
-  }
-  .terms-page-block-title {
-    font-size: 20px;
-  }
-  .terms-page-text {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 640px) {
-  .terms-page-title {
-    font-size: 28px;
-  }
-  .terms-page-block-title {
-    font-size: 18px;
-  }
-}
-
-/* Terms & Conditions Page GSAP Animation Base Classes */
-.terms-page-hero-content,
-.terms-page-intro,
-.terms-page-warning,
-.terms-page-block {
-  will-change: transform, opacity;
-}
-
-/* Initial hidden states */
-.terms-page-hero-content,
-.terms-page-intro,
-.terms-page-warning,
-.terms-page-block {
-  opacity: 0;
-}
-   </style>
 </head>
 
 <body>
@@ -292,13 +158,13 @@
          </div>
       </div>
    </header>
-  
-   
+
+
 
    <!-- Terms & Conditions Page Main Content -->
-<main class="terms-page">
-  
-  <!-- Hero Section -->
+   <main class="terms-page">
+
+      <!-- Hero Section -->
 
       <section class="page-title-section"
          style="background: linear-gradient(95deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 30%, rgba(50, 54, 140, 0.3) 60%, rgba(0, 0, 0, 0.2) 100%), url('https://images.unsplash.com/photo-1635335874521-7987db781153?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-repeat: no-repeat;">
@@ -308,125 +174,187 @@
          </div>
       </section>
 
-  <!-- Content Section -->
-  <section class="terms-page-content">
-    <div class="terms-page-container">
-      
-      <p class="terms-page-intro">Bigyaapan.com is a free classified service provider company in Nepal (registered under Companies Act 2063).</p>
-      <p class="terms-page-warning">Please read the Terms and Conditions carefully before using Bigyaapan.com</p>
+      <!-- Content Section -->
+      <section class="terms-page-content">
+         <div class="terms-page-container">
 
-      <!-- General Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">General</h2>
-        <p class="terms-page-text">Advertisers and users are responsible for ensuring that advertising content, text, images, graphics, video (Content) uploaded for inclusion on Bigyaapan.com complies with all applicable laws. Bigyaapan.com assumes no responsibility for any illegality or any inaccuracy of the Content.</p>
-        <p class="terms-page-text">The advertisers and user guarantee that his or her Content do not violate any copyright, intellectual property rights or other rights of any person or entity, and agrees to release Bigyaapan.com from all obligations, liabilities and claims arising in connection with the use of (or the inability to use) the service.</p>
-        <p class="terms-page-text">Advertisers agree that their Content can may be presented through partner sites of Bigyaapan.com under the same terms and conditions as on Bigyaapan.com.</p>
-      </div>
+            <p class="terms-page-intro">Bigyaapan.com is a free classified service provider company in Nepal (registered
+               under Companies Act 2063).</p>
+            <p class="terms-page-warning">Please read the Terms and Conditions carefully before using Bigyaapan.com</p>
 
-      <!-- Copyright Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Copyright</h2>
-        <p class="terms-page-text">Advertisers grant Bigyaapan.com a perpetual, royalty-free, irrevocable, non-exclusive right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from and distribute such Content or incorporate such Content into any form, medium, or technology now known or later developed.</p>
-        <p class="terms-page-text">The material (including the Content, and any other content, software or services) contained on Bigyaapan.com are the property of Bigyaapan.com, its subsidiaries, affiliates and/or third party licensors. Any intellectual property rights, such as copyright, trademarks, service marks, trade names and other distinguishing brands on the Web Site are the property of Bigyaapan.com. To be clear: No material on this site may be copied, reproduced, republished, installed, posted, transmitted, stored or distributed without written permission from Bigyaapan.com.</p>
-      </div>
+            <!-- General Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">General</h2>
+               <p class="terms-page-text">Advertisers and users are responsible for ensuring that advertising content,
+                  text, images, graphics, video (Content) uploaded for inclusion on Bigyaapan.com complies with all
+                  applicable laws. Bigyaapan.com assumes no responsibility for any illegality or any inaccuracy of the
+                  Content.</p>
+               <p class="terms-page-text">The advertisers and user guarantee that his or her Content do not violate any
+                  copyright, intellectual property rights or other rights of any person or entity, and agrees to release
+                  Bigyaapan.com from all obligations, liabilities and claims arising in connection with the use of (or
+                  the inability to use) the service.</p>
+               <p class="terms-page-text">Advertisers agree that their Content can may be presented through partner
+                  sites of Bigyaapan.com under the same terms and conditions as on Bigyaapan.com.</p>
+            </div>
 
-      <!-- Watermarks Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Watermarks</h2>
-        <p class="terms-page-text">All images on Bigyaapan.com are watermarked, which prevents the images to be used for other purposes, without the consent of the advertiser.</p>
-      </div>
+            <!-- Copyright Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Copyright</h2>
+               <p class="terms-page-text">Advertisers grant Bigyaapan.com a perpetual, royalty-free, irrevocable,
+                  non-exclusive right and license to use, reproduce, modify, adapt, publish, translate, create
+                  derivative works from and distribute such Content or incorporate such Content into any form, medium,
+                  or technology now known or later developed.</p>
+               <p class="terms-page-text">The material (including the Content, and any other content, software or
+                  services) contained on Bigyaapan.com are the property of Bigyaapan.com, its subsidiaries, affiliates
+                  and/or third party licensors. Any intellectual property rights, such as copyright, trademarks, service
+                  marks, trade names and other distinguishing brands on the Web Site are the property of Bigyaapan.com.
+                  To be clear: No material on this site may be copied, reproduced, republished, installed, posted,
+                  transmitted, stored or distributed without written permission from Bigyaapan.com.</p>
+            </div>
 
-      <!-- Safety and images Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Safety and images</h2>
-        <p class="terms-page-text">Bigyaapan.com reserves the right to change the title of the Content, for editorial purposes. Bigyaapan.com reserves the right not to publish images that are irrelevant or images that violate Bigyaapan.com rules.</p>
-      </div>
+            <!-- Watermarks Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Watermarks</h2>
+               <p class="terms-page-text">All images on Bigyaapan.com are watermarked, which prevents the images to be
+                  used for other purposes, without the consent of the advertiser.</p>
+            </div>
 
-      <!-- Personal Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Personal</h2>
-        <p class="terms-page-text">Bigyaapan.com has the right to cooperate with authorities in the case any Content violates the law. The identity of advertisers, users or buyers may be determined, for example by an ISP. IP addresses may also be registered in order to ensure compliance with the terms and conditions.</p>
-      </div>
+            <!-- Safety and images Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Safety and images</h2>
+               <p class="terms-page-text">Bigyaapan.com reserves the right to change the title of the Content, for
+                  editorial purposes. Bigyaapan.com reserves the right not to publish images that are irrelevant or
+                  images that violate Bigyaapan.com rules.</p>
+            </div>
 
-      <!-- Privacy Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Privacy</h2>
-        <p class="terms-page-text">Bigyaapan.com will collect information from Users and Advertisers. It is a condition of use of the Bigyaapan.com that each User and advertiser consents and authorizes Bigyaapan.com to collect and use this information. Bigyaapan.com also reserves the right to disclose it to Company Affiliates and any other person for the purposes of administering, supporting and maintaining Bigyaapan.com, as well as for improving Bigyaapan.com, for example by using the information for research, marketing, product development and planning.</p>
-      </div>
+            <!-- Personal Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Personal</h2>
+               <p class="terms-page-text">Bigyaapan.com has the right to cooperate with authorities in the case any
+                  Content violates the law. The identity of advertisers, users or buyers may be determined, for example
+                  by an ISP. IP addresses may also be registered in order to ensure compliance with the terms and
+                  conditions.</p>
+            </div>
 
-      <!-- Cookies Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Cookies</h2>
-        <p class="terms-page-text">This site uses cookies, which means that you must have cookies enabled on your computer in order for all functionality on this site to work properly. A cookie is a small data file that is written to your hard drive when you visit certain Web sites. Cookie files contain certain information, such as a random number user ID that the site assigns to a visitor to track the pages visited. A cookie cannot read data off your hard disk or read cookie files created by other sites. Cookies, by themselves, cannot be used to find out the identity of any user.</p>
-      </div>
+            <!-- Privacy Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Privacy</h2>
+               <p class="terms-page-text">Bigyaapan.com will collect information from Users and Advertisers. It is a
+                  condition of use of the Bigyaapan.com that each User and advertiser consents and authorizes
+                  Bigyaapan.com to collect and use this information. Bigyaapan.com also reserves the right to disclose
+                  it to Company Affiliates and any other person for the purposes of administering, supporting and
+                  maintaining Bigyaapan.com, as well as for improving Bigyaapan.com, for example by using the
+                  information for research, marketing, product development and planning.</p>
+            </div>
 
-      <!-- Email address of users Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Email address of users</h2>
-        <p class="terms-page-text">Users are required to submit a valid email address, before they are allowed to post advertisements. The email address of the User shall not be publicly displayed and other users are permitted to send email to the User through Bigyaapan.com.</p>
-      </div>
+            <!-- Cookies Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Cookies</h2>
+               <p class="terms-page-text">This site uses cookies, which means that you must have cookies enabled on your
+                  computer in order for all functionality on this site to work properly. A cookie is a small data file
+                  that is written to your hard drive when you visit certain Web sites. Cookie files contain certain
+                  information, such as a random number user ID that the site assigns to a visitor to track the pages
+                  visited. A cookie cannot read data off your hard disk or read cookie files created by other sites.
+                  Cookies, by themselves, cannot be used to find out the identity of any user.</p>
+            </div>
 
-      <!-- Site Availability Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Site Availability</h2>
-        <p class="terms-page-text">Bigyaapan.com does not guarantee continuous or secure access to the Web Site. The Web Site is provided as is and as and when available.</p>
-      </div>
+            <!-- Email address of users Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Email address of users</h2>
+               <p class="terms-page-text">Users are required to submit a valid email address, before they are allowed to
+                  post advertisements. The email address of the User shall not be publicly displayed and other users are
+                  permitted to send email to the User through Bigyaapan.com.</p>
+            </div>
 
-      <!-- Links to third party websites Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Links to third party websites</h2>
-        <p class="terms-page-text">Bigyaapan.com may contain links or references to other websites (Third Party Websites). Bigyaapan.com shall not be responsible for the contents in Third Party Websites. Third Party Websites are not investigated or monitored. In the event the user decides to leave Bigyaapan.com and access Third Party Sites, the user does so at his/her own risk.</p>
-      </div>
+            <!-- Site Availability Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Site Availability</h2>
+               <p class="terms-page-text">Bigyaapan.com does not guarantee continuous or secure access to the Web Site.
+                  The Web Site is provided as is and as and when available.</p>
+            </div>
 
-      <!-- Paid content and services Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Paid content and services</h2>
-        <p class="terms-page-text">Some content and services of Bigyaapan.com require payment, including but not limited to, membership packages, posting of ads in select categories, and sale of items through Doorstep Delivery.</p>
-        <p class="terms-page-text">Users may purchase ad promotions using vouchers issued or sold by Bigyaapan.com. Vouchers may not be redeemed for cash.</p>
-        <p class="terms-page-text">Advertisers and Users may be required to transmit Paid Content information through a third-party service provider, which may be governed by its own terms of use. Linking to any third party service providers is at the Users' and Advertisers' own risk and Bigyaapan.com disclaims all liability related thereto. Under no circumstances shall Bigyaapan.com be obliged to refund any payments made in respect to Paid Content.</p>
-      </div>
+            <!-- Links to third party websites Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Links to third party websites</h2>
+               <p class="terms-page-text">Bigyaapan.com may contain links or references to other websites (Third Party
+                  Websites). Bigyaapan.com shall not be responsible for the contents in Third Party Websites. Third
+                  Party Websites are not investigated or monitored. In the event the user decides to leave Bigyaapan.com
+                  and access Third Party Sites, the user does so at his/her own risk.</p>
+            </div>
 
-      <!-- Memberships Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Memberships</h2>
-        <p class="terms-page-text">As part of a membership package, Bigyaapan.com will create a Shop on behalf of the user. A Shop is a dedicated webpage on Bigyaapan.com, maintained by Bigyaapan.com, with content provided by the user. Bigyaapan.com has the right to any content added to the Shop by the user and has the right to remove or not publish the content if it violates any aspect of the Terms and Conditions.</p>
-        <p class="terms-page-text">Bigyaapan.com reserves the right to modify or change membership packages, including the price and the contents of the membership package.</p>
-      </div>
+            <!-- Paid content and services Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Paid content and services</h2>
+               <p class="terms-page-text">Some content and services of Bigyaapan.com require payment, including but not
+                  limited to, membership packages, posting of ads in select categories, and sale of items through
+                  Doorstep Delivery.</p>
+               <p class="terms-page-text">Users may purchase ad promotions using vouchers issued or sold by
+                  Bigyaapan.com. Vouchers may not be redeemed for cash.</p>
+               <p class="terms-page-text">Advertisers and Users may be required to transmit Paid Content information
+                  through a third-party service provider, which may be governed by its own terms of use. Linking to any
+                  third party service providers is at the Users' and Advertisers' own risk and Bigyaapan.com disclaims
+                  all liability related thereto. Under no circumstances shall Bigyaapan.com be obliged to refund any
+                  payments made in respect to Paid Content.</p>
+            </div>
 
-      <!-- Doorstep Delivery Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Doorstep Delivery</h2>
-        <p class="terms-page-text">Bigyaapan.com do not perform any delivery in any part of Nepal.</p>
-      </div>
+            <!-- Memberships Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Memberships</h2>
+               <p class="terms-page-text">As part of a membership package, Bigyaapan.com will create a Shop on behalf of
+                  the user. A Shop is a dedicated webpage on Bigyaapan.com, maintained by Bigyaapan.com, with content
+                  provided by the user. Bigyaapan.com has the right to any content added to the Shop by the user and has
+                  the right to remove or not publish the content if it violates any aspect of the Terms and Conditions.
+               </p>
+               <p class="terms-page-text">Bigyaapan.com reserves the right to modify or change membership packages,
+                  including the price and the contents of the membership package.</p>
+            </div>
 
-      <!-- Disclaimer Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Disclaimer</h2>
-        <p class="terms-page-text">Bigyaapan.com assume no responsibility whatsoever for the use of our website and disclaims all responsibility for any injury, claim, liability, or damage of any kind resulting from or arising out of or any way related to (a) any errors on Bigyaapan.com or the Content, including but not limited to technical errors and typographical errors, (b) any third party web sites or content directly or indirectly accessed through links in Bigyaapan.com, (c) the unavailability of Bigyaapan.com, (d) your use of Bigyaapan.com or the Content, or (e) your use of any equipment (or software) in connection with Bigyaapan.com</p>
-      </div>
+            <!-- Doorstep Delivery Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Doorstep Delivery</h2>
+               <p class="terms-page-text">Bigyaapan.com do not perform any delivery in any part of Nepal.</p>
+            </div>
 
-      <!-- Indemnification Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Indemnification</h2>
-        <p class="terms-page-text">Advertisers and users agree to indemnify Bigyaapan.com as well as its officers, directors, employees, agents, from and against all losses, expenses, damages and costs, including attorney's fees, resulting from any violation of this Terms and Conditions (including negligent or wrongful conduct).</p>
-      </div>
+            <!-- Disclaimer Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Disclaimer</h2>
+               <p class="terms-page-text">Bigyaapan.com assume no responsibility whatsoever for the use of our website
+                  and disclaims all responsibility for any injury, claim, liability, or damage of any kind resulting
+                  from or arising out of or any way related to (a) any errors on Bigyaapan.com or the Content, including
+                  but not limited to technical errors and typographical errors, (b) any third party web sites or content
+                  directly or indirectly accessed through links in Bigyaapan.com, (c) the unavailability of
+                  Bigyaapan.com, (d) your use of Bigyaapan.com or the Content, or (e) your use of any equipment (or
+                  software) in connection with Bigyaapan.com</p>
+            </div>
 
-      <!-- Modifications Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Modifications</h2>
-        <p class="terms-page-text">Bigyaapan.com reserves the right to modify these Terms and Conditions. Such modifications shall be effective immediately upon posting on Bigyaapan.com. You are responsible for the reviewing of such modifications. Your continued access or use of Bigyaapan.com shall be deemed your acceptance of the modified terms and conditions.</p>
-      </div>
+            <!-- Indemnification Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Indemnification</h2>
+               <p class="terms-page-text">Advertisers and users agree to indemnify Bigyaapan.com as well as its
+                  officers, directors, employees, agents, from and against all losses, expenses, damages and costs,
+                  including attorney's fees, resulting from any violation of this Terms and Conditions (including
+                  negligent or wrongful conduct).</p>
+            </div>
 
-      <!-- Governing law Section -->
-      <div class="terms-page-block">
-        <h2 class="terms-page-block-title">Governing law</h2>
-        <p class="terms-page-text">Bigyaapan.com is operated under the laws and regulations of Nepal.</p>
-      </div>
+            <!-- Modifications Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Modifications</h2>
+               <p class="terms-page-text">Bigyaapan.com reserves the right to modify these Terms and Conditions. Such
+                  modifications shall be effective immediately upon posting on Bigyaapan.com. You are responsible for
+                  the reviewing of such modifications. Your continued access or use of Bigyaapan.com shall be deemed
+                  your acceptance of the modified terms and conditions.</p>
+            </div>
 
-    </div>
-  </section>
+            <!-- Governing law Section -->
+            <div class="terms-page-block">
+               <h2 class="terms-page-block-title">Governing law</h2>
+               <p class="terms-page-text">Bigyaapan.com is operated under the laws and regulations of Nepal.</p>
+            </div>
 
-</main>
+         </div>
+      </section>
+
+   </main>
    <!-- ══════════════════════════════════ PREMIUM FOOTER ══════════════════════════════════ -->
    <footer class="footer">
       <div class="footer__inner">
@@ -607,74 +535,6 @@
    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
    <script src="./assets/js/script.js"></script>
    <script src="./assets/js/gsap.js"></script>
-<script>
-   // Terms & Conditions Page - GSAP Animations
-
-document.addEventListener('DOMContentLoaded', function() {
-  
-  if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Hero Section Animation
-    gsap.fromTo('.terms-page-hero-content', 
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-    );
-    
-    // Intro Text Animation
-    gsap.fromTo('.terms-page-intro', 
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: '.terms-page-content',
-          start: 'top 85%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-    
-    // Warning Text Animation
-    gsap.fromTo('.terms-page-warning', 
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: '.terms-page-content',
-          start: 'top 85%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-    
-    // Content Blocks Stagger Animation
-    gsap.fromTo('.terms-page-block', 
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: '.terms-page-content',
-          start: 'top 75%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
-    
-  }
-  
-});
-</script>
 </body>
 
 </html>

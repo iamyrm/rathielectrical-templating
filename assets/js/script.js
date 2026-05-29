@@ -1147,3 +1147,73 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 });
+
+// ============================================================
+// TERMS AND CONDITIONS PAGE
+// ============================================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof gsap !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero Section Animation
+    gsap.fromTo(
+      ".terms-page-hero-content",
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 1, ease: "power3.out" },
+    );
+
+    // Intro Text Animation
+    gsap.fromTo(
+      ".terms-page-intro",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".terms-page-content",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+
+    // Warning Text Animation
+    gsap.fromTo(
+      ".terms-page-warning",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".terms-page-content",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+
+    // Content Blocks Stagger Animation
+    gsap.fromTo(
+      ".terms-page-block",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".terms-page-content",
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+  }
+});
