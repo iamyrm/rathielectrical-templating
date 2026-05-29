@@ -31,132 +31,181 @@
                </div>
             </a>
             <ul class="nav__menu" id="navMenu">
-               <li class="nav__item"><a href="./page-about.html" class="nav__link">About Us</a></li>
+               <li class="nav__item">
+                  <a href="./index.html" class="nav__link">Home</a>
+               </li>
+               <li class="nav__item">
+                  <a href="./page-about.html" class="nav__link">About Us</a>
+               </li>
                <li class="nav__item" id="item-businesses">
                   <button class="nav__link" aria-expanded="false">
-                     Businesses <span class="chevron"><svg viewBox="0 0 24 24">
+                     Categories
+                     <span class="chevron">
+                        <svg viewBox="0 0 24 24">
                            <polyline points="6 9 12 15 18 9" />
-                        </svg></span>
+                        </svg>
+                     </span>
                   </button>
                   <div class="dropdown dropdown--wide">
                      <span class="dropdown__header">Our Business Units</span>
                      <a href="#" class="dropdown__item">
                         <div class="item__icon">🔌</div>
-                        <div class="item__text"><span class="item__title">Cables &amp; Wires</span><span
-                              class="item__desc">Power, specialty &amp; flexible cables</span></div>
+                        <div class="item__text">
+                           <span class="item__title">Cables &amp; Wires</span>
+                           <span class="item__desc">Power, specialty &amp; flexible cables</span>
+                        </div>
                      </a>
                      <a href="#" class="dropdown__item">
                         <div class="item__icon">🛢️</div>
-                        <div class="item__text"><span class="item__title">Lubricants &amp; Oils</span><span
-                              class="item__desc">Industrial &amp; automotive lubricants</span></div>
+                        <div class="item__text">
+                           <span class="item__title">Lubricants &amp; Oils</span>
+                           <span class="item__desc">Industrial &amp; automotive lubricants</span>
+                        </div>
                      </a>
                      <a href="#" class="dropdown__item">
                         <div class="item__icon">🚗</div>
-                        <div class="item__text"><span class="item__title">Automotive</span><span class="item__desc">OEM
-                              &amp;
-                              aftermarket solutions</span></div>
+                        <div class="item__text">
+                           <span class="item__title">Automotive</span>
+                           <span class="item__desc">OEM &amp; aftermarket solutions</span>
+                        </div>
                      </a>
                      <a href="#" class="dropdown__item">
                         <div class="item__icon">⚡</div>
-                        <div class="item__text"><span class="item__title">Transformer Oils</span><span
-                              class="item__desc">Electrical insulation &amp; cooling</span></div>
+                        <div class="item__text">
+                           <span class="item__title">Transformer Oils</span>
+                           <span class="item__desc">Electrical insulation &amp; cooling</span>
+                        </div>
                      </a>
                   </div>
                </li>
-               <li class="nav__item" id="item-investors">
-                  <button class="nav__link" aria-expanded="false">Investors <span class="chevron"><svg
-                           viewBox="0 0 24 24">
+               <li class="nav__item">
+                  <a href="./product-listing.html" class="nav__link">Products</a>
+               </li>
+               <li class="nav__item">
+                  <a href="./page-dealers.html" class="nav__link">Dealers</a>
+               </li>
+               <li class="nav__item">
+                  <a href="./page-contact.html" class="nav__link">Contact</a>
+               </li>
+               <li class="nav__item" id="item-resources">
+                  <button class="nav__link" aria-expanded="false">Others
+                     <span class="chevron">
+                        <svg viewBox="0 0 24 24">
                            <polyline points="6 9 12 15 18 9" />
-                        </svg></span></button>
-                  <div class="dropdown"><a href="#" class="dropdown__item">Annual Reports</a><a href="#"
-                        class="dropdown__item">Financial Results</a><a href="#" class="dropdown__item">Stock
-                        Information</a><a href="#" class="dropdown__item">Board of Directors</a>
-                     <div class="dropdown__divider"></div><a href="#" class="dropdown__item">Investor
-                        Presentations</a>
+                        </svg>
+                     </span>
+                  </button>
+                  <div class="dropdown">
+                     <a href="./page-faq.html" class="dropdown__item">FAQs</a>
+                     <a href="./page-privacy-policy.html" class="dropdown__item">Privacy &amp; Policy</a>
+                     <a href="./page-terms-conditions.html" class="dropdown__item">Terms &amp; Condition</a>
                   </div>
                </li>
-               <li class="nav__item"><a href="./product-listing.html" class="nav__link">Products</a></li>
-               <li class="nav__item" id="item-resources">
-                  <button class="nav__link" aria-expanded="false">Resources <span class="chevron"><svg
-                           viewBox="0 0 24 24">
-                           <polyline points="6 9 12 15 18 9" />
-                        </svg></span></button>
-                  <div class="dropdown"><a href="#" class="dropdown__item">Brochures &amp; Catalogues</a><a href="#"
-                        class="dropdown__item">Technical Datasheets</a><a href="#" class="dropdown__item">Media &amp;
-                        Press</a><a href="#" class="dropdown__item">Blog &amp; Insights</a></div>
-               </li>
-               <li class="nav__item"><a href="./page-contact.html" class="nav__link">Contact</a></li>
             </ul>
             <div class="nav__actions">
                <div class="search-wrap" id="searchWrap">
-                  <div class="search-panel" id="searchPanel"><input type="text" id="searchInput"
-                        placeholder="Search products, news…" autocomplete="off"><button class="search-close"
-                        id="searchClose"><svg viewBox="0 0 24 24">
+                  <div class="search-panel" id="searchPanel">
+                     <input type="text" id="searchInput" placeholder="Search products, news…" autocomplete="off">
+                     <button class="search-close" id="searchClose">
+                        <svg viewBox="0 0 24 24">
                            <line x1="18" y1="6" x2="6" y2="18" />
                            <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg></button></div>
-                  <button class="search-btn" id="searchBtn"><svg viewBox="0 0 24 24">
+                        </svg>
+                     </button>
+                  </div>
+                  <button class="search-btn" id="searchBtn">
+                     <svg viewBox="0 0 24 24">
                         <circle cx="11" cy="11" r="7" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                     </svg></button>
+                     </svg>
+                  </button>
                </div>
                <a href="#" class="nav__link nav__link--cta">Get Dealership</a>
-               <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+               <button class="hamburger" id="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </button>
             </div>
          </div>
       </nav>
 
       <div class="drawer" id="drawer">
          <div class="drawer__panel">
-            <div class="mob-item"><a href="./page-about.html" class="mob-link">About Us</a></div>
-            <div class="mob-item" id="mob-businesses"><button class="mob-link" id="mob-btn-businesses">Businesses<span
-                     class="mob-chevron"><svg viewBox="0 0 24 24">
+            <div class="mob-item">
+               <a href="./index.html" class="mob-link">Home</a>
+            </div>
+            <div class="mob-item">
+               <a href="./page-about.html" class="mob-link">About Us</a>
+            </div>
+            <div class="mob-item" id="mob-businesses">
+               <button class="mob-link" id="mob-btn-businesses">Categories
+                  <span class="mob-chevron"><svg viewBox="0 0 24 24">
                         <polyline points="6 9 12 15 18 9" />
-                     </svg></span></button>
-               <div class="mob-submenu"><a href="#" class="mob-sub-link">
+                     </svg>
+                  </span>
+               </button>
+               <div class="mob-submenu">
+                  <a href="#" class="mob-sub-link">
                      <div class="mob-sub-icon">🔌</div>
-                     <div class="mob-sub-text"><span class="mob-sub-title">Cables &amp; Wires</span><span
-                           class="mob-sub-desc">Power, specialty &amp; flexible cables</span></div>
-                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-text">
+                        <span class="mob-sub-title">Cables &amp; Wires</span>
+                        <span class="mob-sub-desc">Power, specialty &amp; flexible cables</span>
+                     </div>
+                  </a>
+                  <a href="#" class="mob-sub-link">
                      <div class="mob-sub-icon">🛢️</div>
-                     <div class="mob-sub-text"><span class="mob-sub-title">Lubricants &amp; Oils</span><span
-                           class="mob-sub-desc">Industrial &amp; automotive lubricants</span></div>
-                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-text">
+                        <span class="mob-sub-title">Lubricants &amp; Oils</span>
+                        <span class="mob-sub-desc">Industrial &amp; automotive lubricants</span>
+                     </div>
+                  </a>
+                  <a href="#" class="mob-sub-link">
                      <div class="mob-sub-icon">🚗</div>
-                     <div class="mob-sub-text"><span class="mob-sub-title">Automotive</span><span
-                           class="mob-sub-desc">OEM
-                           &amp;
-                           aftermarket solutions</span></div>
-                  </a><a href="#" class="mob-sub-link">
+                     <div class="mob-sub-text">
+                        <span class="mob-sub-title">Automotive</span>
+                        <span class="mob-sub-desc">OEM &amp; aftermarket solutions</span>
+                     </div>
+                  </a>
+                  <a href="#" class="mob-sub-link">
                      <div class="mob-sub-icon">⚡</div>
-                     <div class="mob-sub-text"><span class="mob-sub-title">Transformer Oils</span><span
-                           class="mob-sub-desc">Electrical insulation &amp; cooling</span></div>
-                  </a></div>
+                     <div class="mob-sub-text">
+                        <span class="mob-sub-title">Transformer Oils</span>
+                        <span class="mob-sub-desc">Electrical insulation &amp; cooling</span>
+                     </div>
+                  </a>
+               </div>
             </div>
-            <div class="mob-item" id="mob-investors"><button class="mob-link" id="mob-btn-investors">Investors<span
-                     class="mob-chevron"><svg viewBox="0 0 24 24">
+            <div class="mob-item">
+               <a href="./product-listing.html" class="mob-link">Products</a>
+            </div>
+            <div class="mob-item">
+               <a href="./page-dealers.html" class="mob-link">Dealer</a>
+            </div>
+            <div class="mob-item">
+               <a href="./page-contact.html" class="mob-link">Contact</a>
+            </div>
+            <div class="mob-item" id="mob-resources">
+               <button class="mob-link" id="mob-btn-resources">Others
+                  <span class="mob-chevron">
+                     <svg viewBox="0 0 24 24">
                         <polyline points="6 9 12 15 18 9" />
-                     </svg></span></button>
-               <div class="mob-submenu"><a href="#" class="mob-sub-link">Annual Reports</a><a href="#"
-                     class="mob-sub-link">Financial Results</a><a href="#" class="mob-sub-link">Stock
-                     Information</a><a href="#" class="mob-sub-link">Board of Directors</a><a href="#"
-                     class="mob-sub-link">Investor
-                     Presentations</a></div>
+                     </svg>
+                  </span>
+               </button>
+               <div class="mob-submenu">
+                  <a href="./page-faq.html" class="mob-sub-link">FAQs</a>
+                  <a href="./page-privacy-policy.html" class="mob-sub-link">Privacy &amp; Policy</a>
+                  <a href="./page-terms-conditions.html" class="mob-sub-link">Terms &amp; Condition</a>
+               </div>
             </div>
-            <div class="mob-item"><a href="./product-listing.html" class="mob-link">Products</a></div>
-            <div class="mob-item" id="mob-resources"><button class="mob-link" id="mob-btn-resources">Resources<span
-                     class="mob-chevron"><svg viewBox="0 0 24 24">
-                        <polyline points="6 9 12 15 18 9" />
-                     </svg></span></button>
-               <div class="mob-submenu"><a href="#" class="mob-sub-link">Brochures &amp; Catalogues</a><a href="#"
-                     class="mob-sub-link">Technical Datasheets</a><a href="#" class="mob-sub-link">Media &amp;
-                     Press</a><a href="#" class="mob-sub-link">Blog &amp; Insights</a></div>
+            <div class="mob-actions">
+               <a href="#" class="mob-cta">Get Dealership</a>
             </div>
-            <div class="mob-item"><a href="./page-contact.html" class="mob-link">Contact</a></div>
-            <div class="mob-actions"><a href="#" class="mob-cta">Get Dealership</a></div>
          </div>
       </div>
    </header>
+
 
    <main>
 
@@ -169,7 +218,7 @@
                      alt="">
                </div>
                <div class="swiper-slide"><img
-                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg"
+                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2023-04-05-10-21-47-CA7.jpg"
                      alt="">
                </div>
                <div class="swiper-slide"><img
@@ -177,7 +226,7 @@
                      alt="">
                </div>
                <div class="swiper-slide"><img
-                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg"
+                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2023-04-05-10-21-47-CA7.jpg"
                      alt="">
                </div>
                <div class="swiper-slide"><img
@@ -185,7 +234,7 @@
                      alt="">
                </div>
                <div class="swiper-slide"><img
-                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg"
+                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2023-04-05-10-21-47-CA7.jpg"
                      alt="">
                </div>
                <div class="swiper-slide"><img
@@ -193,7 +242,7 @@
                      alt="">
                </div>
                <div class="swiper-slide"><img
-                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2025-06-16-05-16-13-FoK.jpg"
+                     src="https://rathielectricals.com/upload/content/banner/bannerimage-2023-04-05-10-21-47-CA7.jpg"
                      alt="">
                </div>
                <div class="swiper-slide"><img
