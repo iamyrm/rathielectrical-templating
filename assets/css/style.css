@@ -1266,6 +1266,10 @@ a {
 }
 
 /* .products-section .swiper-pagination-bullet { */
+.home-page-hero-swiper {
+   margin-bottom: 40px;
+}
+
 .swiper-pagination-bullet {
    background: var(--primary);
    opacity: 0.5;
@@ -3722,6 +3726,9 @@ a {
 }
 
 @media (max-width: 768px) {
+   .home-page-hero-swiper {
+      margin-bottom: 24px;
+   }
 
    .contact-info {
       order: 1;
