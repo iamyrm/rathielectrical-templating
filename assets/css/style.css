@@ -1,4 +1,5 @@
 @import url('./fonts.css');
+
 /* ============================================================
    GLOBALS & RESET
    ============================================================ */
@@ -746,7 +747,7 @@ a {
 .location-item__icon {
    color: var(--secondary);
    flex-shrink: 0;
-   margin-top: 2px;
+   margin-top: -0.5px;
 }
 
 .location-item__icon svg {
@@ -2717,6 +2718,11 @@ a {
    margin-bottom: 20px;
 }
 
+.card-icon svg {
+   width: 100%;
+   height: 64px;
+}
+
 .diversification-card h3 {
    font-size: 20px;
    font-weight: 700;
@@ -2809,11 +2815,16 @@ a {
    margin-bottom: 20px;
 }
 
+.value-icon svg {
+   width: 100%;
+   height: 64px;
+}
+
 .value-card h3 {
    font-size: 20px;
    font-weight: 700;
    margin-bottom: 10px;
-   color: var(--primary);
+   color: var(--text);
 }
 
 .value-card p {
@@ -3334,6 +3345,11 @@ a {
 
 .dealer-card__icon {
    font-size: 32px;
+}
+
+.dealer-card__icon svg {
+   width: 100%;
+   height: 28px;
 }
 
 .dealer-card__name {
