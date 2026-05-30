@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      loop: true,
       autoplay: { delay: 5000, disableOnInteraction: false },
       effect: "fade",
       fadeEffect: { crossFade: true },
