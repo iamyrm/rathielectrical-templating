@@ -827,29 +827,47 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   );
 
-  // Timeline Items (odd from left, even from right)
+  // // Timeline Items
+  // gsap.fromTo(
+  //   ".timeline-item",
+  //   { opacity: 0, y: -40 },
+  //   {
+  //     opacity: 1,
+  //     x: 0,
+  //     duration: 0.7,
+  //     stagger: 0.2,
+  //     ease: "power2.out",
+  //     scrollTrigger: {
+  //       trigger: ".journey-section",
+  //       start: "top 75%",
+  //       toggleActions: "play none none reverse",
+  //     },
+  //   },
+  // );
+  // gsap.fromTo(
+  //   ".timeline-item:nth-child(even)",
+  //   { opacity: 0, y: 40 },
+  //   {
+  //     opacity: 1,
+  //     x: 0,
+  //     duration: 0.7,
+  //     stagger: 0.2,
+  //     ease: "power2.out",
+  //     scrollTrigger: {
+  //       trigger: ".journey-section",
+  //       start: "top 75%",
+  //       toggleActions: "play none none reverse",
+  //     },
+  //   },
+  // );
+
+  // Timeline Items
   gsap.fromTo(
     ".timeline-item",
-    { opacity: 0, y: -40 },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 0.7,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".journey-section",
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-    },
-  );
-  gsap.fromTo(
-    ".timeline-item:nth-child(even)",
     { opacity: 0, y: 40 },
     {
       opacity: 1,
-      x: 0,
+      y: 0,
       duration: 0.7,
       stagger: 0.2,
       ease: "power2.out",
