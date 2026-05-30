@@ -861,23 +861,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   );
 
-  // gsap.fromTo(
-  //   ".timeline-item",
-  //   { opacity: 0, y: 40 },
-  //   {
-  //     opacity: 1,
-  //     y: 0,
-  //     duration: 0.7,
-  //     stagger: 0.2,
-  //     ease: "power2.out",
-  //     scrollTrigger: {
-  //       trigger: ".journey-section",
-  //       start: "top 75%",
-  //       toggleActions: "play none none reverse",
-  //     },
-    },
-  );
-
   // Diversification Cards
   gsap.fromTo(
     ".diversification-card",
